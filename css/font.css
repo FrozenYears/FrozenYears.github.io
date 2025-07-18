@@ -3,6 +3,16 @@
     font-display: swap;
     src: url('/font/HYTangMeiRenW.woff2') format("truetype");
 }
-body {
-    font-family: 'HYTMR';
+@font-face{
+    font-family: 'XWWK';
+    font-display: swap;
+    src: url('/font/LXGWWenKai-Regular.woff2') format("truetype");
 }
+@font-face{
+    font-family: 'MVBoli';
+    font-display: swap;
+    src: url('/font/MVBoli.woff2') format("truetype");
+}
+/* body { */
+    /* font-family: 'XWWK'; */
+/* } */
