@@ -1,17 +1,17 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Voicemeeter &amp; RVC变声器 | FrozenYears's Blog</title><meta name="author" content="FrozenYears"><meta name="copyright" content="FrozenYears"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="花儿不哭开发的RVC实时变声器 与 虚拟音频混音软件Voicemeeter的软件使用及调试教程（经验）">
+<!DOCTYPE html><html lang="en" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Voicemeeter &amp; RVC Voice Changer | FrozenYears's Blog</title><meta name="author" content="FrozenYears"><meta name="copyright" content="FrozenYears"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="A tutorial (experience sharing) on the usage and debugging of the RVC real-time voice changer developed by 花儿不哭 and the virtual audio mixing software Voicemeeter.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Voicemeeter &amp; RVC变声器">
+<meta property="og:title" content="Voicemeeter &amp; RVC Voice Changer">
 <meta property="og:url" content="http://frozenyears.github.io/2025/07/18/Voicemeeter-RVC%E5%8F%98%E5%A3%B0%E5%99%A8/index.html">
 <meta property="og:site_name" content="FrozenYears&#39;s Blog">
-<meta property="og:description" content="花儿不哭开发的RVC实时变声器 与 虚拟音频混音软件Voicemeeter的软件使用及调试教程（经验）">
-<meta property="og:locale" content="zh_CN">
+<meta property="og:description" content="A tutorial (experience sharing) on the usage and debugging of the RVC real-time voice changer developed by 花儿不哭 and the virtual audio mixing software Voicemeeter.">
+<meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://frozenyears.github.io/img/avatar.jpg">
 <meta property="article:published_time" content="2025-07-18T02:59:39.000Z">
-<meta property="article:modified_time" content="2025-07-18T03:46:52.790Z">
+<meta property="article:modified_time" content="2026-02-12T15:29:53.671Z">
 <meta property="article:author" content="FrozenYears">
-<meta property="article:tag" content="软件">
-<meta property="article:tag" content="教程">
-<meta property="article:tag" content="经验">
+<meta property="article:tag" content="Software">
+<meta property="article:tag" content="Tutorial">
+<meta property="article:tag" content="Experience">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://frozenyears.github.io/img/avatar.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://frozenyears.github.io/2025/07/18/Voicemeeter-RVC%E5%8F%98%E5%A3%B0%E5%99%A8/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.12.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
   root: '/',
@@ -21,28 +21,28 @@
   noticeOutdate: undefined,
   highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
   copy: {
-    success: '复制成功',
-    error: '复制错误',
-    noSupport: '浏览器不支持'
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
   },
   relativeDate: {
     homepage: false,
     post: false
   },
-  runtime: '天',
+  runtime: 'days',
   dateSuffix: {
-    just: '刚刚',
-    min: '分钟前',
-    hour: '小时前',
-    day: '天前',
-    month: '个月前'
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
   },
-  copyright: {"limitCount":50,"languages":{"author":"作者: FrozenYears","link":"链接: ","source":"来源: FrozenYears's Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  copyright: {"limitCount":50,"languages":{"author":"Author: FrozenYears","link":"Link: ","source":"Source: FrozenYears's Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
   lightbox: 'fancybox',
   Snackbar: undefined,
   infinitegrid: {
     js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.0/dist/infinitegrid.min.js',
-    buttonText: '加载更多'
+    buttonText: 'Load More'
   },
   isPhotoFigcaption: false,
   islazyload: false,
@@ -53,12 +53,12 @@
   },
   autoDarkmode: false
 }</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
-  title: 'Voicemeeter & RVC变声器',
+  title: 'Voicemeeter & RVC Voice Changer',
   isPost: true,
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2025-07-18 11:46:52'
+  postUpdate: '2026-02-12 23:29:53'
 }</script><script>(win=>{
       win.saveToLocal = {
         set: (key, value, ttl) => {
@@ -155,72 +155,235 @@
         }
       }
       detectApple()
-    })(window)</script><link rel="stylesheet" href="/css/font.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">3</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="FrozenYears's Blog"><span class="site-name">FrozenYears's Blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Voicemeeter &amp; RVC变声器</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-07-18T02:59:39.000Z" title="发表于 2025-07-18 10:59:39">2025-07-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-07-18T03:46:52.790Z" title="更新于 2025-07-18 11:46:52">2025-07-18</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Voicemeeter &amp; RVC变声器"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><span id="more"></span>
-<h2 id="一、Voicemeeter"><a href="#一、Voicemeeter" class="headerlink" title="一、Voicemeeter"></a>一、Voicemeeter</h2><h3 id="1-设置系统声音"><a href="#1-设置系统声音" class="headerlink" title="1. 设置系统声音"></a>1. 设置系统声音</h3><ul>
-<li>默认输出设备以及默认通讯设备<br><code>Voicemeeter Input</code></li>
-<li>默认输入设备以及默认通讯设备<br><code>Voicemeeter Out B1</code></li>
+    })(window)</script><link rel="stylesheet" href="/css/font.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">3</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Friends</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="FrozenYears's Blog"><span class="site-name">FrozenYears's Blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Friends</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Voicemeeter &amp; RVC Voice Changer</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-07-18T02:59:39.000Z" title="Created 2025-07-18 10:59:39">2025-07-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-02-12T15:29:53.671Z" title="Updated 2026-02-12 23:29:53">2026-02-12</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Voicemeeter &amp; RVC Voice Changer"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><span id="more"></span>
+
+<h2 id="Table-of-Contents"><a href="#Table-of-Contents" class="headerlink" title="Table of Contents"></a>Table of Contents</h2><ul>
+<li><a href="#i-voicemeeter-setup">I. Voicemeeter Setup</a><ul>
+<li><a href="#1-system-sound-settings">1. System Sound Settings</a></li>
+<li><a href="#2-voicemeeter-configuration">2. Voicemeeter Configuration</a></li>
 </ul>
-<p><img src="/2025/07/18/Voicemeeter-RVC%E5%8F%98%E5%A3%B0%E5%99%A8/System_sound.png" alt="图片"></p>
+</li>
+<li><a href="#ii-rvc-voice-changer">II. RVC Voice Changer</a><ul>
+<li><a href="#1-system-requirements">1. System Requirements</a></li>
+<li><a href="#2-running-the-application">2. Running the Application</a></li>
+<li><a href="#3-basic-software-settings">3. Basic Software Settings</a></li>
+<li><a href="#4-parameter-tuning-guide">4. Parameter Tuning Guide</a></li>
+</ul>
+</li>
+<li><a href="#iii-audio-workflow">III. Audio Workflow</a></li>
+<li><a href="#download-links--resources">Download Links &amp; Resources</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+<hr>
+<h2 id="I-Voicemeeter-Setup"><a href="#I-Voicemeeter-Setup" class="headerlink" title="I. Voicemeeter Setup"></a>I. Voicemeeter Setup</h2><h3 id="1-System-Sound-Settings"><a href="#1-System-Sound-Settings" class="headerlink" title="1. System Sound Settings"></a>1. System Sound Settings</h3><p>Configure your Windows sound settings as follows:</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Device</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Default output device</td>
+<td><code>Voicemeeter Input</code></td>
+</tr>
+<tr>
+<td>Default communication output</td>
+<td><code>Voicemeeter Input</code></td>
+</tr>
+<tr>
+<td>Default input device</td>
+<td><code>Voicemeeter Out B1</code></td>
+</tr>
+<tr>
+<td>Default communication input</td>
+<td><code>Voicemeeter Out B1</code></td>
+</tr>
+</tbody></table>
+<p><img src="/2025/07/18/Voicemeeter-RVC%E5%8F%98%E5%A3%B0%E5%99%A8/System_sound.png" alt="System Sound Settings"></p>
 <blockquote>
-<p>此时系统音频（如软件音频）会输出到Voicemeeter Input，而输入端因为Voicemeeter Out B1并非物理声卡，检测不到音频输入</p>
+<p><strong>Note:</strong> At this point, system audio (e.g., software audio) will be output to Voicemeeter Input. The input side will not detect audio input because Voicemeeter Out B1 is not a physical sound card.</p>
 </blockquote>
-<h3 id="2-设置Voicemeeter"><a href="#2-设置Voicemeeter" class="headerlink" title="2. 设置Voicemeeter"></a>2. 设置Voicemeeter</h3><p><img src="/2025/07/18/Voicemeeter-RVC%E5%8F%98%E5%A3%B0%E5%99%A8/VoicmeeterSettings.png" alt="图片"></p>
-<blockquote>
-<p>A为Hardware Output（监听），B为Virtual Output（输出）；</p>
-</blockquote>
-<blockquote>
-<p>左侧区域为物理设备（如麦克风）的音频信息输入到Voicemeeter的通道；<br>中间区域为系统音频、软件音频输入到Voicemeeter的通道；<br>右侧区域为总输出的控制区域，A可输出到物理设备进行监听，B可输出到对应软件；</p>
-</blockquote>
-<blockquote>
-<p>此时若左侧和中间有音频信号输入，<br>在对应通道勾选A1，输出到A1，即可在右侧区域A1通道检测到音频，同时输出到耳机进行监听，让自己听见；<br>在对应通道勾选B1，输出到B1，即可在右侧区域B1通道检测到音频，同时在软件端通过默认输入设备（即Voicemeeter Out B1），将Voicemeeter处理过后的音频输入到软件中，让对方听见。</p>
-</blockquote>
-<blockquote>
-<p>[!WARNING] 注意<br>输入和输出的物理设备需选择MME格式，<br>若为其他格式，会对变声效果及延迟产生影响。</p>
-</blockquote>
-<h2 id="二、RVC变声器（Realtime-Voice-Changer）"><a href="#二、RVC变声器（Realtime-Voice-Changer）" class="headerlink" title="二、RVC变声器（Realtime Voice Changer）"></a>二、RVC变声器（Realtime Voice Changer）</h2><h3 id="1-运行"><a href="#1-运行" class="headerlink" title="1. 运行"></a>1. 运行</h3><blockquote>
-<p>[!NOTE] 配置要求<br>最低配置：<br>GPU显卡：NVIDIA GTX 1060 6G or AMD RX580 8G<br>CPU：Intel_酷睿 or AMD_锐龙四核心以上<br>内存：8G RAM以上<br>操作系统：Windows_10系统 or Windows_11系统</p>
-<p>推荐配置：<br>GPU显卡：RTX 3060 8G<br>CPU：lntel十二代酷睿i5或锐龙7000系以上<br>内存：32G RAM以上<br>操作系统：Windows_10系统 or Windows_11系统</p>
-<p>注：目前AMD和英特尔的显卡延迟会比较高，建议英伟达RTX20系以上显卡使用</p>
-</blockquote>
-<p>下载对应版本的RVC后，到对应目录<br><img src="/2025/07/18/Voicemeeter-RVC%E5%8F%98%E5%A3%B0%E5%99%A8/RVC.png" alt="图片"><br>运行go-realtime-gui.bat即可运行实时变声器</p>
-<blockquote>
-<p>assets\weights 文件夹内存放的是变声器的音色模型（ .pth文件 ）<br>logs 文件夹内存放的是音色模型的索引文件（ .index文件 ）</p>
-</blockquote>
-<h3 id="2-软件基础设置"><a href="#2-软件基础设置" class="headerlink" title="2. 软件基础设置"></a>2. 软件基础设置</h3><p>软件gui界面如下：<br><img src="/2025/07/18/Voicemeeter-RVC%E5%8F%98%E5%A3%B0%E5%99%A8/RVC-GUI.png" alt="图片"></p>
+<h3 id="2-Voicemeeter-Configuration"><a href="#2-Voicemeeter-Configuration" class="headerlink" title="2. Voicemeeter Configuration"></a>2. Voicemeeter Configuration</h3><p><img src="/2025/07/18/Voicemeeter-RVC%E5%8F%98%E5%A3%B0%E5%99%A8/VoicmeeterSettings.png" alt="Voicemeeter Interface"></p>
+<h4 id="Interface-Overview"><a href="#Interface-Overview" class="headerlink" title="Interface Overview"></a>Interface Overview</h4><ul>
+<li><strong>A</strong> &#x3D; Hardware Output (monitoring)</li>
+<li><strong>B</strong> &#x3D; Virtual Output (output to applications)</li>
+</ul>
+<h4 id="Channel-Layout"><a href="#Channel-Layout" class="headerlink" title="Channel Layout"></a>Channel Layout</h4><table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Left Area</td>
+<td>Audio input from physical devices (e.g., microphone)</td>
+</tr>
+<tr>
+<td>Middle Area</td>
+<td>System and software audio input</td>
+</tr>
+<tr>
+<td>Right Area</td>
+<td>Master output control - A for hardware monitoring, B for software output</td>
+</tr>
+</tbody></table>
+<h4 id="Routing-Guide"><a href="#Routing-Guide" class="headerlink" title="Routing Guide"></a>Routing Guide</h4><ol>
+<li><p><strong>For Self-Monitoring:</strong></p>
 <ul>
-<li>首先选择 .pth模型文件，以及对应的.index索引文件（非必需）；</li>
-<li>将设备类型设置为MME，输入设备选择物理麦克风，输出设备选择Voicemeeter AUX Input（与系统声音分开）；</li>
-<li>选择“使用设备采样率”。</li>
+<li>Check <strong>A1</strong> in the corresponding input channel</li>
+<li>Audio will be routed to A1 and output to headphones for monitoring</li>
 </ul>
-<h3 id="3-软件调试"><a href="#3-软件调试" class="headerlink" title="3. 软件调试"></a>3. 软件调试</h3><ul>
-<li>Response Threshold（响应阈值）：音量低于所选值的音频会被过滤，调高可能导致吞字；</li>
-<li>Pitch Settings（音调设置）：男变女12左右，女变男-12左右，性别不变0左右；</li>
-<li>性别因子&#x2F;声线粗细：正值更细，负值更粗；</li>
-<li>Index Rate（索引文件参考率）：若模型文件与index索引文件对应，调高可以拉进和模型目标音色的相似度，但CPU占用和延迟会略微增加一点；若模型文件与index索引文件不对应，该值须调整为0，否则报错；</li>
-<li>Loudness Factor（响度因子）：越大越大；</li>
+</li>
+<li><p><strong>For Application Output:</strong></p>
+<ul>
+<li>Check <strong>B1</strong> in the corresponding input channel</li>
+<li>Software will receive processed audio through the default input device (Voicemeeter Out B1)</li>
 </ul>
+</li>
+</ol>
 <blockquote>
-<p>[!NOTE] Pitch Detection Algorithm（音高算法）<br>pm：对应0416版本。延迟最低CPU占用最小。理论上唱歌效果可以，但说话效果对嘈杂环境不太好；<br><a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=237158882&content_type=Article&match_order=1&q=harvest&zhida_source=entity">harvest</a>：最好的音高算法，CPU占用较大，通过调高右侧”harvest进程数”降低延迟，分摊负载；单显卡打游戏还想低延迟变声的首选；<br><a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=237158882&content_type=Article&match_order=1&q=crepe&zhida_source=entity">crepe</a>：效果接近harvest的音高算法，稍吃GPU。有rmvpe之后crepe就是充数的；<br><a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=237158882&content_type=Article&match_order=1&q=rmvpe&zhida_source=entity">rmvpe</a>：效果默秒全，速度比harvest和crepe快，吃一点GPU（比crepe占用更小），不吃CPU，现无脑推荐，除非显卡太拉了。</p>
+<p>[!WARNING]<br>The physical input and output devices <strong>must</strong> be set to MME format.<br>Using other formats will affect voice changing quality and increase latency.</p>
 </blockquote>
 <hr>
+<h2 id="II-RVC-Voice-Changer"><a href="#II-RVC-Voice-Changer" class="headerlink" title="II. RVC Voice Changer"></a>II. RVC Voice Changer</h2><h3 id="1-System-Requirements"><a href="#1-System-Requirements" class="headerlink" title="1. System Requirements"></a>1. System Requirements</h3><blockquote>
+<p>[!NOTE]<br><strong>Minimum Configuration:</strong></p>
 <ul>
-<li>Sample Length（采样长度）：决定变声延迟。越低延迟越低，但可能造成声音“机关枪”卡顿。</li>
+<li>GPU: NVIDIA GTX 1060 6GB or AMD RX580 8GB</li>
+<li>CPU: Intel Core or AMD Ryzen (quad-core or above)</li>
+<li>RAM: 8GB or above</li>
+<li>OS: Windows 10 or Windows 11</li>
+</ul>
+<p><strong>Recommended Configuration:</strong></p>
+<ul>
+<li>GPU: RTX 3060 8GB</li>
+<li>CPU: Intel 12th Gen Core i5 or Ryzen 7000 series or above</li>
+<li>RAM: 32GB or above</li>
+<li>OS: Windows 10 or Windows 11</li>
+</ul>
+<p><strong>Note:</strong> AMD and Intel graphics cards currently have higher latency. NVIDIA RTX 20 series or higher is recommended for optimal performance.</p>
+</blockquote>
+<h3 id="2-Running-the-Application"><a href="#2-Running-the-Application" class="headerlink" title="2. Running the Application"></a>2. Running the Application</h3><p>After downloading RVC, navigate to the installation directory:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">RVC/</span><br><span class="line">├── assets/weights/    # Voice models (.pth files)</span><br><span class="line">├── logs/              # Model index files (.index files)</span><br><span class="line">└── go-realtime-gui.bat</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2025/07/18/Voicemeeter-RVC%E5%8F%98%E5%A3%B0%E5%99%A8/RVC.png" alt="RVC Directory Structure"></p>
+<p>Run <code>go-realtime-gui.bat</code> to start the real-time voice changer.</p>
+<h3 id="3-Basic-Software-Settings"><a href="#3-Basic-Software-Settings" class="headerlink" title="3. Basic Software Settings"></a>3. Basic Software Settings</h3><p><img src="/2025/07/18/Voicemeeter-RVC%E5%8F%98%E5%A3%B0%E5%99%A8/RVC-GUI.png" alt="RVC GUI Interface"></p>
+<p>Configuration steps:</p>
+<ol>
+<li>Select the <code>.pth</code> model file and corresponding <code>.index</code> index file (optional)</li>
+<li>Set device type to <strong>MME</strong></li>
+<li>Input device: Select your physical microphone</li>
+<li>Output device: Select <strong>Voicemeeter AUX Input</strong> (separate from system sound)</li>
+<li>Enable <strong>“Use device sample rate”</strong></li>
+</ol>
+<h3 id="4-Parameter-Tuning-Guide"><a href="#4-Parameter-Tuning-Guide" class="headerlink" title="4. Parameter Tuning Guide"></a>4. Parameter Tuning Guide</h3><h4 id="Basic-Parameters"><a href="#Basic-Parameters" class="headerlink" title="Basic Parameters"></a>Basic Parameters</h4><table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Recommended Values</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Response Threshold</td>
+<td>Filters audio below threshold</td>
+<td>Higher &#x3D; may swallow words</td>
+</tr>
+<tr>
+<td>Pitch</td>
+<td>Voice pitch adjustment</td>
+<td>Male→Female: ~12, Female→Male: ~-12, Same gender: ~0</td>
+</tr>
+<tr>
+<td>Gender Factor</td>
+<td>Voice thickness</td>
+<td>Positive &#x3D; thinner, Negative &#x3D; thicker</td>
+</tr>
+<tr>
+<td>Index Rate</td>
+<td>Model similarity enhancement</td>
+<td>0 if no matching index file; increase for better similarity</td>
+</tr>
+<tr>
+<td>Loudness Factor</td>
+<td>Output volume level</td>
+<td>Higher &#x3D; louder</td>
+</tr>
+</tbody></table>
+<h4 id="Pitch-Detection-Algorithms"><a href="#Pitch-Detection-Algorithms" class="headerlink" title="Pitch Detection Algorithms"></a>Pitch Detection Algorithms</h4><blockquote>
+<p>[!NOTE]<br><strong>Available Algorithms:</strong></p>
+<ul>
+<li><strong>pm</strong>: Lowest latency, lowest CPU. Good for singing, poor for speech in noisy environments</li>
+<li><strong>harvest</strong>: Best quality, higher CPU. Increase process count to reduce latency</li>
+<li><strong>crepe</strong>: Similar to harvest, GPU-intensive. Mostly superseded by rmvpe</li>
+<li><strong>rmvpe</strong> ⭐: Excellent default performance, faster than harvest&#x2F;crepe, minimal GPU usage, <strong>highly recommended</strong></li>
+</ul>
+</blockquote>
+<h4 id="Advanced-Settings"><a href="#Advanced-Settings" class="headerlink" title="Advanced Settings"></a>Advanced Settings</h4><ul>
+<li><strong>Sample Length:</strong> Determines latency. Lower &#x3D; less latency, but may cause stuttering</li>
+<li><strong>Fade Length:</strong> Affects naturalness vs. latency trade-off</li>
+<li><strong>Extra Inference Time:</strong> 1-3 seconds recommended. Higher &#x3D; better word recognition, affects CUDA usage</li>
 </ul>
 <blockquote>
-<p>[!NOTE] Number of CPU Processes Used for Harvest Pitch Algorithm（Harvest进程数）<br>只有音高算法为harvest生效；<br>进程数会音响音质，如果对音质有要求，进程数不建议大于4；<br>决定音高算法最高占用多少系统线程（最多吃多少比例CPU） 如果有其他任务也要吃CPU，会影响你的工作（比如打游戏），则不宜拉太高；<br>调低了推理延迟会增大，如果推理延迟不能满足需求则应拉高采样长度，或者更换音高算法；<br> 如果推理延迟已经能满足变声延迟的需求，则建议该选项进行微调，越低越好。</p>
-</blockquote>
+<p>[!NOTE]<br><strong>CPU Process Count (Harvest algorithm only):</strong></p>
 <ul>
-<li>Fade Length（淡入淡出长度）：影响声音自然度和变声延迟。调高声音更自然，延迟也越高。</li>
-<li>Extra Inference Time（额外推理时长）：1以上3以内，建议至少要留1s，效果越长越好，调高了咬字识别更好。会影响CUDA占用。</li>
+<li>Affects sound quality; not recommended above 4</li>
+<li>Determines max CPU threads for pitch algorithm</li>
+<li>Lower values reduce gaming performance impact but increase inference latency</li>
+<li>If inference latency meets requirements, use the lowest possible value</li>
 </ul>
-<h2 id="三、最终音频工作流"><a href="#三、最终音频工作流" class="headerlink" title="三、最终音频工作流"></a>三、最终音频工作流</h2><p><img src="/2025/07/18/Voicemeeter-RVC%E5%8F%98%E5%A3%B0%E5%99%A8/AudioWorkflow.png" alt="图片"></p>
-<blockquote>
-<p>[!FAQ] 官方下载链接<br>GPT-SoVITS开源github发布地址（不会编程的不要下这个，下载楼下的整合包）<br><a target="_blank" rel="noopener" href="https://github.com/RVC-Boss/GPT-SoVITS">https://github.com/RVC-Boss/GPT-SoVITS</a><br>###GPT-SoVITS解疑互助群1051522182###<br>教程文档 <a target="_blank" rel="noopener" href="https://www.yuque.com/baicaigongchang1145haoyuangong/ib3g1e">https://www.yuque.com/baicaigongchang1145haoyuangong/ib3g1e</a> </p>
-<p>国内满速直链下载训练推理整合包： eujr5.ensl.cn&#x2F;5d<br>50系显卡整合包满速直链 eujrj.ensl.cn&#x2F;64<br>gpt-sovits&#x2F;RVC满速下载直链合集：<a target="_blank" rel="noopener" href="http://www.yuque.com/flowercry/hxf0ds">www.yuque.com/flowercry/hxf0ds</a><br>百度网盘<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1OE5qL0KreO-ASHwm6Zl9gA?pwd=mqpi%EF%BC%88%E9%9C%80%E8%A6%81%E8%B6%85%E7%BA%A7%E4%BC%9A%E5%91%98%E6%B0%AA%E9%87%91%E6%89%8D%E8%83%BD%E6%BB%A1%E9%80%9F%E4%B8%8B%E8%BD%BD%EF%BC%89">https://pan.baidu.com/s/1OE5qL0KreO-ASHwm6Zl9gA?pwd=mqpi（需要超级会员氪金才能满速下载）</a> </p>
-<p>云端训练地址<a target="_blank" rel="noopener" href="https://www.codewithgpu.com/i/RVC-Boss/GPT-SoVITS/GPT-SoVITS-Official">https://www.codewithgpu.com/i/RVC-Boss/GPT-SoVITS/GPT-SoVITS-Official</a> </p>
-<p>###RVC变声器官 方交流讨论群1040034856，如果是RVC的用户别走错了##</p>
 </blockquote>
-<blockquote>
-<p>参考：<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/670629290">RVC变声器保姆级教程 - 知乎</a></p>
+<hr>
+<h2 id="III-Audio-Workflow"><a href="#III-Audio-Workflow" class="headerlink" title="III. Audio Workflow"></a>III. Audio Workflow</h2><p><img src="/2025/07/18/Voicemeeter-RVC%E5%8F%98%E5%A3%B0%E5%99%A8/AudioWorkflow.png" alt="Complete Audio Signal Flow"></p>
+<hr>
+<h2 id="Download-Links-Resources"><a href="#Download-Links-Resources" class="headerlink" title="Download Links &amp; Resources"></a>Download Links &amp; Resources</h2><blockquote>
+<p>[!FAQ]<br><strong>Official Sources:</strong></p>
+<ul>
+<li><strong>GitHub (Source Code):</strong> <a target="_blank" rel="noopener" href="https://github.com/RVC-Boss/GPT-SoVITS">RVC-Boss&#x2F;GPT-SoVITS</a><ul>
+<li><em>Note: For developers only; use integrated packages below</em></li>
+</ul>
+</li>
+</ul>
+<p><strong>Download Mirrors:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Training&#x2F;Inference Package</td>
+<td><a href="eujr5.ensl.cn/5d">eujr5.ensl.cn&#x2F;5d</a></td>
+</tr>
+<tr>
+<td>RTX 50 Series Package</td>
+<td><a href="eujrj.ensl.cn/64">eujrj.ensl.cn&#x2F;64</a></td>
+</tr>
+<tr>
+<td>Full Collection</td>
+<td><a href="www.yuque.com/flowercry/hxf0ds">yuque.com&#x2F;flowercry&#x2F;hxf0ds</a></td>
+</tr>
+<tr>
+<td>Baidu Netdisk</td>
+<td><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1OE5qL0KreO-ASHwm6Zl9gA?pwd=mqpi">pan.baidu.com&#x2F;s&#x2F;1OE5qL0KreO-ASHwm6Zl9gA?pwd&#x3D;mqpi</a> <em>(requires Super VIP)</em></td>
+</tr>
+</tbody></table>
+<p><strong>Documentation &amp; Training:</strong></p>
+<ul>
+<li>Tutorial Docs: <a target="_blank" rel="noopener" href="https://www.yuque.com/baicaigongchang1145haoyuangong/ib3g1e">yuque.com&#x2F;baicaigongchang1145haoyuangong&#x2F;ib3g1e</a></li>
+<li>Cloud Training: <a target="_blank" rel="noopener" href="https://www.codewithgpu.com/i/RVC-Boss/GPT-SoVITS/GPT-SoVITS-Official">codewithgpu.com&#x2F;i&#x2F;RVC-Boss&#x2F;GPT-SoVITS</a></li>
+</ul>
+<p><strong>Community:</strong></p>
+<ul>
+<li>GPT-SoVITS Q&amp;A Group: <strong>1051522182</strong></li>
+<li>RVC Voice Changer Group: <strong>1040034856</strong></li>
+</ul>
 </blockquote>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://frozenyears.github.io/Homepage">FrozenYears</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://frozenyears.github.io/2025/07/18/Voicemeeter-RVC%E5%8F%98%E5%A3%B0%E5%99%A8/">http://frozenyears.github.io/2025/07/18/Voicemeeter-RVC%E5%8F%98%E5%A3%B0%E5%99%A8/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://frozenyears.github.io" target="_blank">FrozenYears's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%BD%AF%E4%BB%B6/">软件</a><a class="post-meta__tags" href="/tags/%E6%95%99%E7%A8%8B/">教程</a><a class="post-meta__tags" href="/tags/%E7%BB%8F%E9%AA%8C/">经验</a></div><div class="post_share"><div class="social-share" data-image="/img/avatar.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2025/07/18/Markdown%E8%AF%AD%E6%B3%95%E5%9C%A8Obsidian%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/" title="Markdown语法在Obsidian中的应用"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Markdown语法在Obsidian中的应用</div></div></a></div><div class="next-post pull-right"><a href="/2024/02/01/Hello-World/" title="Hello World"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Hello World</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">FrozenYears</div><div class="author-info__description">Who am I</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">3</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/FrozenYears" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:1939648535@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome to FrozenYears's Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81Voicemeeter"><span class="toc-number">1.</span> <span class="toc-text">一、Voicemeeter</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%AE%BE%E7%BD%AE%E7%B3%BB%E7%BB%9F%E5%A3%B0%E9%9F%B3"><span class="toc-number">1.1.</span> <span class="toc-text">1. 设置系统声音</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%AE%BE%E7%BD%AEVoicemeeter"><span class="toc-number">1.2.</span> <span class="toc-text">2. 设置Voicemeeter</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81RVC%E5%8F%98%E5%A3%B0%E5%99%A8%EF%BC%88Realtime-Voice-Changer%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">二、RVC变声器（Realtime Voice Changer）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%BF%90%E8%A1%8C"><span class="toc-number">2.1.</span> <span class="toc-text">1. 运行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%BD%AF%E4%BB%B6%E5%9F%BA%E7%A1%80%E8%AE%BE%E7%BD%AE"><span class="toc-number">2.2.</span> <span class="toc-text">2. 软件基础设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95"><span class="toc-number">2.3.</span> <span class="toc-text">3. 软件调试</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%9C%80%E7%BB%88%E9%9F%B3%E9%A2%91%E5%B7%A5%E4%BD%9C%E6%B5%81"><span class="toc-number">3.</span> <span class="toc-text">三、最终音频工作流</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/18/Markdown%E8%AF%AD%E6%B3%95%E5%9C%A8Obsidian%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/" title="Markdown语法在Obsidian中的应用">Markdown语法在Obsidian中的应用</a><time datetime="2025-07-18T03:53:39.000Z" title="发表于 2025-07-18 11:53:39">2025-07-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/18/Voicemeeter-RVC%E5%8F%98%E5%A3%B0%E5%99%A8/" title="Voicemeeter &amp; RVC变声器">Voicemeeter &amp; RVC变声器</a><time datetime="2025-07-18T02:59:39.000Z" title="发表于 2025-07-18 10:59:39">2025-07-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/01/Hello-World/" title="Hello World">Hello World</a><time datetime="2024-02-01T12:51:56.000Z" title="发表于 2024-02-01 20:51:56">2024-02-01</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2025 By FrozenYears</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.12.0"></script><script src="/js/main.js?v=4.12.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+<hr>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/670629290">RVC Voice Changer Nanny-level Tutorial - Zhihu</a></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://frozenyears.github.io/Homepage">FrozenYears</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://frozenyears.github.io/2025/07/18/Voicemeeter-RVC%E5%8F%98%E5%A3%B0%E5%99%A8/">http://frozenyears.github.io/2025/07/18/Voicemeeter-RVC%E5%8F%98%E5%A3%B0%E5%99%A8/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Software/">Software</a><a class="post-meta__tags" href="/tags/Tutorial/">Tutorial</a><a class="post-meta__tags" href="/tags/Experience/">Experience</a></div><div class="post_share"><div class="social-share" data-image="/img/avatar.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2025/07/18/Markdown%E8%AF%AD%E6%B3%95%E5%9C%A8Obsidian%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/" title="Markdown Syntax in Obsidian"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Previous</div><div class="prev_info">Markdown Syntax in Obsidian</div></div></a></div><div class="next-post pull-right"><a href="/2024/02/01/Hello-World/" title="Hello World"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next</div><div class="next_info">Hello World</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">FrozenYears</div><div class="author-info__description">FrozenYears's Blog</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">3</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/FrozenYears" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:1939648535@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">What's up!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Table-of-Contents"><span class="toc-number">1.</span> <span class="toc-text">Table of Contents</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#I-Voicemeeter-Setup"><span class="toc-number">2.</span> <span class="toc-text">I. Voicemeeter Setup</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-System-Sound-Settings"><span class="toc-number">2.1.</span> <span class="toc-text">1. System Sound Settings</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Voicemeeter-Configuration"><span class="toc-number">2.2.</span> <span class="toc-text">2. Voicemeeter Configuration</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Interface-Overview"><span class="toc-number">2.2.1.</span> <span class="toc-text">Interface Overview</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Channel-Layout"><span class="toc-number">2.2.2.</span> <span class="toc-text">Channel Layout</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Routing-Guide"><span class="toc-number">2.2.3.</span> <span class="toc-text">Routing Guide</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#II-RVC-Voice-Changer"><span class="toc-number">3.</span> <span class="toc-text">II. RVC Voice Changer</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-System-Requirements"><span class="toc-number">3.1.</span> <span class="toc-text">1. System Requirements</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Running-the-Application"><span class="toc-number">3.2.</span> <span class="toc-text">2. Running the Application</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Basic-Software-Settings"><span class="toc-number">3.3.</span> <span class="toc-text">3. Basic Software Settings</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Parameter-Tuning-Guide"><span class="toc-number">3.4.</span> <span class="toc-text">4. Parameter Tuning Guide</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Basic-Parameters"><span class="toc-number">3.4.1.</span> <span class="toc-text">Basic Parameters</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Pitch-Detection-Algorithms"><span class="toc-number">3.4.2.</span> <span class="toc-text">Pitch Detection Algorithms</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Advanced-Settings"><span class="toc-number">3.4.3.</span> <span class="toc-text">Advanced Settings</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#III-Audio-Workflow"><span class="toc-number">4.</span> <span class="toc-text">III. Audio Workflow</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Download-Links-Resources"><span class="toc-number">5.</span> <span class="toc-text">Download Links &amp; Resources</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">6.</span> <span class="toc-text">References</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/18/Markdown%E8%AF%AD%E6%B3%95%E5%9C%A8Obsidian%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/" title="Markdown Syntax in Obsidian">Markdown Syntax in Obsidian</a><time datetime="2025-07-18T03:53:39.000Z" title="Created 2025-07-18 11:53:39">2025-07-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/18/Voicemeeter-RVC%E5%8F%98%E5%A3%B0%E5%99%A8/" title="Voicemeeter &amp; RVC Voice Changer">Voicemeeter &amp; RVC Voice Changer</a><time datetime="2025-07-18T02:59:39.000Z" title="Created 2025-07-18 10:59:39">2025-07-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/01/Hello-World/" title="Hello World">Hello World</a><time datetime="2024-02-01T12:51:56.000Z" title="Created 2024-02-01 20:51:56">2024-02-01</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2026 By FrozenYears</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.12.0"></script><script src="/js/main.js?v=4.12.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
