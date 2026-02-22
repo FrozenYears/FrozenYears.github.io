@@ -1,0 +1,505 @@
+<!DOCTYPE html><html lang="en" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>OpenCode Tutorial | FrozenYears's Blog</title><meta name="author" content="FrozenYears"><meta name="copyright" content="FrozenYears"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="A complete guide to OpenCode CLI - installation, local LLM configuration via Ollama, and multi-agent workflow optimization using the Oh-My-OpenCode plugin.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenCode Tutorial">
+<meta property="og:url" content="http://frozenyears.github.io/2026/02/22/OpenCode-Tutorial/index.html">
+<meta property="og:site_name" content="FrozenYears&#39;s Blog">
+<meta property="og:description" content="A complete guide to OpenCode CLI - installation, local LLM configuration via Ollama, and multi-agent workflow optimization using the Oh-My-OpenCode plugin.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://frozenyears.github.io/img/avatar.jpg">
+<meta property="article:published_time" content="2026-02-21T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-02-22T16:54:49.240Z">
+<meta property="article:author" content="FrozenYears">
+<meta property="article:tag" content="Tutorial">
+<meta property="article:tag" content="AI-Agent">
+<meta property="article:tag" content="OpenCode">
+<meta property="article:tag" content="Oh-My-OpenCode">
+<meta property="article:tag" content="CLI">
+<meta property="article:tag" content="Ollama">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://frozenyears.github.io/img/avatar.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://frozenyears.github.io/2026/02/22/OpenCode-Tutorial/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.12.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: FrozenYears","link":"Link: ","source":"Source: FrozenYears's Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.0/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'OpenCode Tutorial',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-02-23 00:54:49'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/font.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">5</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Friends</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="FrozenYears's Blog"><span class="site-name">FrozenYears's Blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Friends</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">OpenCode Tutorial</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2026-02-21T16:00:00.000Z" title="Created 2026-02-22 00:00:00">2026-02-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-02-22T16:54:49.240Z" title="Updated 2026-02-23 00:54:49">2026-02-23</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">991</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>6mins</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="OpenCode Tutorial"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="Table-of-Contents"><a href="#Table-of-Contents" class="headerlink" title="Table of Contents"></a>Table of Contents</h2><ul>
+<li><a href="#1-overview">1. Overview</a></li>
+<li><a href="#2-why-cli-over-web-chat">2. Why CLI over Web Chat</a></li>
+<li><a href="#3-installation">3. Installation</a></li>
+<li><a href="#4-commands--models">4. Commands &amp; Models</a></li>
+<li><a href="#5-configuration">5. Configuration</a></li>
+<li><a href="#6-oh-my-opencode-plugin">6. Oh My OpenCode Plugin (Highly Recommended)</a></li>
+<li><a href="#7-summary">7. Summary</a></li>
+</ul>
+<hr>
+<h2 id="1-Overview"><a href="#1-Overview" class="headerlink" title="1. Overview"></a>1. Overview</h2><h3 id="1-1-What-is-OpenCode"><a href="#1-1-What-is-OpenCode" class="headerlink" title="1.1 What is OpenCode?"></a>1.1 What is OpenCode?</h3><p>OpenCode is an open-source AI coding agent with OS-level permissions. Unlike web-based LLMs, it can:</p>
+<ul>
+<li>Read, modify, and create files</li>
+<li>Execute terminal commands</li>
+<li>Search and analyze codebases</li>
+<li>Auto-fix errors (<strong>closed-loop development</strong>)</li>
+</ul>
+<h3 id="1-2-Core-Features"><a href="#1-2-Core-Features" class="headerlink" title="1.2 Core Features"></a>1.2 Core Features</h3><table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Open Source</strong></td>
+<td>GitHub 100k+ Stars, free</td>
+</tr>
+<tr>
+<td><strong>Multi-Model</strong></td>
+<td>75+ providers</td>
+</tr>
+<tr>
+<td><strong>Privacy First</strong></td>
+<td>Local models supported</td>
+</tr>
+<tr>
+<td><strong>Terminal UI</strong></td>
+<td>Low resource usage</td>
+</tr>
+<tr>
+<td><strong>Default Agents</strong></td>
+<td>Build Mode + Plan Mode</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="2-Why-CLI-over-Web-Chat"><a href="#2-Why-CLI-over-Web-Chat" class="headerlink" title="2. Why CLI over Web Chat"></a>2. Why CLI over Web Chat</h2><h3 id="2-1-Core-Differences"><a href="#2-1-Core-Differences" class="headerlink" title="2.1 Core Differences"></a>2.1 Core Differences</h3><table>
+<thead>
+<tr>
+<th align="center">Aspect</th>
+<th align="center"><strong>OpenCode CLI</strong></th>
+<th align="center"><strong>Web LLM</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Role</td>
+<td align="center">Doer</td>
+<td align="center">Consultant</td>
+</tr>
+<tr>
+<td align="center">Interaction</td>
+<td align="center">Direct file read&#x2F;modify</td>
+<td align="center">Manual copy-paste</td>
+</tr>
+<tr>
+<td align="center">Context</td>
+<td align="center">Full repo awareness</td>
+<td align="center">Single session only</td>
+</tr>
+<tr>
+<td align="center">Closed-loop</td>
+<td align="center">Auto-fix</td>
+<td align="center">Manual feedback</td>
+</tr>
+<tr>
+<td align="center">Privacy</td>
+<td align="center">Fully local</td>
+<td align="center">Cloud API</td>
+</tr>
+</tbody></table>
+<h3 id="2-2-Key-Changes"><a href="#2-2-Key-Changes" class="headerlink" title="2.2 Key Changes"></a>2.2 Key Changes</h3><ol>
+<li><strong>Context Management</strong>: Auto-scan Git repo, build AST&#x2F;Repository Map</li>
+<li><strong>I&#x2F;O Revolution</strong>: Generate Git Diff directly, no copy-paste</li>
+<li><strong>Agentic Loop</strong>: Write → Run → Error → Auto-fix → Success</li>
+</ol>
+<hr>
+<h2 id="3-Installation"><a href="#3-Installation" class="headerlink" title="3. Installation"></a>3. Installation</h2><h3 id="3-1-Quick-Install"><a href="#3-1-Quick-Install" class="headerlink" title="3.1 Quick Install"></a>3.1 Quick Install</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Linux/macOS</span></span><br><span class="line">curl -fsSL https://opencode.ai/install | bash</span><br><span class="line"></span><br><span class="line"><span class="comment"># macOS</span></span><br><span class="line">brew install opencode</span><br><span class="line"></span><br><span class="line"><span class="comment"># Windows (Chocolatey)</span></span><br><span class="line">choco install opencode</span><br><span class="line"></span><br><span class="line"><span class="comment"># Windows (Scoop)</span></span><br><span class="line">scoop install opencode</span><br><span class="line"></span><br><span class="line"><span class="comment"># Node.js</span></span><br><span class="line">npm install -g opencode-ai</span><br><span class="line"></span><br><span class="line"><span class="comment"># Docker</span></span><br><span class="line">docker run -it --<span class="built_in">rm</span> ghcr.io/anomalyco/opencode</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-Verify-Installation"><a href="#3-2-Verify-Installation" class="headerlink" title="3.2 Verify Installation"></a>3.2 Verify Installation</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">opencode --version</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3-First-Launch"><a href="#3-3-First-Launch" class="headerlink" title="3.3 First Launch"></a>3.3 First Launch</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /path/to/your/project</span><br><span class="line">opencode</span><br><span class="line">/init</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>[!NOTE]<br><code>/init</code> scans your code structure and generates <code>AGENTS.md</code> for better context understanding.</p>
+</blockquote>
+<hr>
+<h2 id="4-Commands-Models"><a href="#4-Commands-Models" class="headerlink" title="4. Commands &amp; Models"></a>4. Commands &amp; Models</h2><h3 id="4-1-Slash-Commands"><a href="#4-1-Slash-Commands" class="headerlink" title="4.1 Slash Commands"></a>4.1 Slash Commands</h3><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Function</th>
+<th>Shortcut</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/init</code></td>
+<td>Initialize project</td>
+<td><code>Ctrl+X I</code></td>
+</tr>
+<tr>
+<td><code>/models</code></td>
+<td>List&#x2F;switch models</td>
+<td><code>Ctrl+X M</code></td>
+</tr>
+<tr>
+<td><code>/connect</code></td>
+<td>Configure LLM provider</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>/undo</code></td>
+<td>Undo last action</td>
+<td><code>Ctrl+X U</code></td>
+</tr>
+<tr>
+<td><code>/redo</code></td>
+<td>Redo action</td>
+<td><code>Ctrl+X R</code></td>
+</tr>
+<tr>
+<td><code>/share</code></td>
+<td>Share session</td>
+<td><code>Ctrl+X S</code></td>
+</tr>
+<tr>
+<td><code>/new</code></td>
+<td>New session</td>
+<td><code>Ctrl+X N</code></td>
+</tr>
+<tr>
+<td><code>/sessions</code></td>
+<td>List sessions</td>
+<td><code>Ctrl+X L</code></td>
+</tr>
+<tr>
+<td><code>/compact</code></td>
+<td>Compact session</td>
+<td><code>Ctrl+X C</code></td>
+</tr>
+<tr>
+<td><code>/exit</code></td>
+<td>Exit</td>
+<td><code>Ctrl+X Q</code></td>
+</tr>
+</tbody></table>
+<h3 id="4-2-Free-Models"><a href="#4-2-Free-Models" class="headerlink" title="4.2 Free Models"></a>4.2 Free Models</h3><table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>GLM-5 Free</strong></td>
+<td>Daily coding</td>
+</tr>
+<tr>
+<td><strong>Minimax M2.5 Free</strong></td>
+<td>General tasks</td>
+</tr>
+<tr>
+<td><strong>Trinity Large Preview</strong></td>
+<td>Fast response</td>
+</tr>
+<tr>
+<td><strong>Big Pickle</strong></td>
+<td>Code generation</td>
+</tr>
+</tbody></table>
+<h3 id="4-3-Switch-Model"><a href="#4-3-Switch-Model" class="headerlink" title="4.3 Switch Model"></a>4.3 Switch Model</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/models</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">/openmodel GLM-5-Free</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-4-Agents"><a href="#4-4-Agents" class="headerlink" title="4.4 Agents"></a>4.4 Agents</h3><table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Build</strong></td>
+<td>Full permissions, default</td>
+</tr>
+<tr>
+<td><strong>Plan</strong></td>
+<td>Read-only, press <code>Tab</code> to switch</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="5-Configuration"><a href="#5-Configuration" class="headerlink" title="5. Configuration"></a>5. Configuration</h2><h3 id="5-1-Config-Location"><a href="#5-1-Config-Location" class="headerlink" title="5.1 Config Location"></a>5.1 Config Location</h3><ul>
+<li><strong>Windows</strong>: <code>%USERPROFILE%\.config\opencode\opencode.json</code></li>
+<li><strong>macOS&#x2F;Linux</strong>: <code>~/.config/opencode/opencode.json</code></li>
+</ul>
+<h3 id="5-2-Basic-Config"><a href="#5-2-Basic-Config" class="headerlink" title="5.2 Basic Config"></a>5.2 Basic Config</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;$schema&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://opencode.ai/config.json&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="comment">// Theme configuration</span></span><br><span class="line">  <span class="attr">&quot;theme&quot;</span><span class="punctuation">:</span> <span class="string">&quot;opencode&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;model&quot;</span><span class="punctuation">:</span> <span class="string">&quot;anthropic/claude-sonnet-4-5&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;autoupdate&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-3-Multi-Model-Config"><a href="#5-3-Multi-Model-Config" class="headerlink" title="5.3 Multi-Model Config"></a>5.3 Multi-Model Config</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;$schema&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://opencode.ai/config.json&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;theme&quot;</span><span class="punctuation">:</span> <span class="string">&quot;opencode&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;provider&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;default&quot;</span><span class="punctuation">:</span> <span class="string">&quot;glm-5-free&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;github&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;github_copilot&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;enabled&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;ollama&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;npm&quot;</span><span class="punctuation">:</span> <span class="string">&quot;@ai-sdk/openai-compatible&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Ollama Local&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;options&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;baseURL&quot;</span><span class="punctuation">:</span> <span class="string">&quot;http://localhost:11434/v1&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-4-Local-Ollama-Setup-Configure-A-Local-LLM"><a href="#5-4-Local-Ollama-Setup-Configure-A-Local-LLM" class="headerlink" title="*5.4 Local Ollama Setup (Configure A Local LLM)"></a>*5.4 Local Ollama Setup (Configure A Local LLM)</h3><h4 id="Step-0-Configure-Environment-Variables"><a href="#Step-0-Configure-Environment-Variables" class="headerlink" title="Step 0: Configure Environment Variables"></a>Step 0: Configure Environment Variables</h4><blockquote>
+<p>( if you don’t want the large models to be installed on your C drive )</p>
+</blockquote>
+<ul>
+<li>Open the <strong>Environment Variables</strong></li>
+<li>Create a new <strong>system variable</strong></li>
+<li>The <strong>variable name</strong> is <code>OLLAMA_MODELS</code></li>
+<li>The <strong>variable value</strong> is the directory where models should be, like <code>D:\OllamaModels</code></li>
+</ul>
+<h4 id="Step-1-Install-Ollama"><a href="#Step-1-Install-Ollama" class="headerlink" title="Step 1: Install Ollama"></a>Step 1: Install Ollama</h4><p>Visit <a target="_blank" rel="noopener" href="https://ollama.com/">https://ollama.com</a> to download</p>
+<h4 id="Step-2-Pull-Models"><a href="#Step-2-Pull-Models" class="headerlink" title="Step 2: Pull Models"></a>Step 2: Pull Models</h4><blockquote>
+<p>Choose the model on your own, and depend on your hardware.</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># I recommend this model for 32G Memory and RTX 5060 Laptop or higher</span></span><br><span class="line">ollama run qwen2.5-coder:14b</span><br></pre></td></tr></table></figure>
+
+<h4 id="Step-3-Configure-OpenCode"><a href="#Step-3-Configure-OpenCode" class="headerlink" title="Step 3: Configure OpenCode"></a>Step 3: Configure OpenCode</h4><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;provider&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;ollama&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;npm&quot;</span><span class="punctuation">:</span> <span class="string">&quot;@ai-sdk/openai-compatible&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Ollama Local&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;options&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;baseURL&quot;</span><span class="punctuation">:</span> <span class="string">&quot;http://localhost:11434/v1&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;models&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;qwen2.5-coder:14b&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">          <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Qwen 2.5 Coder 14B&quot;</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>[!WARNING]<br>Ollama baseURL <strong>must</strong> include <code>/v1</code> suffix.</p>
+</blockquote>
+<h3 id="5-5-Model-Selection-Guide"><a href="#5-5-Model-Selection-Guide" class="headerlink" title="5.5 Model Selection Guide"></a>5.5 Model Selection Guide</h3><table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Recommended</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Daily Coding</td>
+<td>GLM-5 Free &#x2F; Minimax M2.5 Free</td>
+</tr>
+<tr>
+<td>Complex Tasks</td>
+<td>Other Thinking Models</td>
+</tr>
+<tr>
+<td>Architecture</td>
+<td>Trinity Large Preview</td>
+</tr>
+<tr>
+<td>Privacy Sensitive</td>
+<td>Ollama local</td>
+</tr>
+<tr>
+<td>Fast Response</td>
+<td>Trinity Large Preview or Ollama</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="6-Oh-My-OpenCode-Plugin"><a href="#6-Oh-My-OpenCode-Plugin" class="headerlink" title="6. Oh My OpenCode Plugin"></a>6. Oh My OpenCode Plugin</h2><blockquote>
+<p>[!TIP]<br>Without <strong>Oh My OpenCode</strong>, OpenCode only operates at <strong>30% capacity</strong>.</p>
+</blockquote>
+<h3 id="6-1-What-is-Oh-My-OpenCode"><a href="#6-1-What-is-Oh-My-OpenCode" class="headerlink" title="6.1 What is Oh My OpenCode?"></a>6.1 What is Oh My OpenCode?</h3><p>Plugin that upgrades single agent to <strong>multi-agent collaboration team</strong>.</p>
+<p>GitHub: <a target="_blank" rel="noopener" href="https://github.com/code-yeongyu/oh-my-opencode">code-yeongyu&#x2F;oh-my-opencode</a></p>
+<h3 id="6-2-Core-Agents"><a href="#6-2-Core-Agents" class="headerlink" title="6.2 Core Agents"></a>6.2 Core Agents</h3><table>
+<thead>
+<tr>
+<th>Agent</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Sisyphus (Ultraworker)</strong></td>
+<td>Main orchestrator, delegates to specialized agents, drives parallel execution until 100% completion.</td>
+</tr>
+<tr>
+<td><strong>Hephaestus (Deep Agent)</strong></td>
+<td>Deep research, hard logic-heavy tasks, thorough analysis</td>
+</tr>
+<tr>
+<td><strong>Prometheus (Plan Builder)</strong></td>
+<td>Codebase navigation, exploration, pattern discovery</td>
+</tr>
+<tr>
+<td><strong>Atlas (Plan Executor)</strong></td>
+<td>Implements pre-defined multi-step plans</td>
+</tr>
+</tbody></table>
+<h3 id="6-3-ULW-Trigger"><a href="#6-3-ULW-Trigger" class="headerlink" title="6.3 ULW Trigger"></a>6.3 ULW Trigger</h3><p>Add <code>ultrawork</code> or <code>ulw</code> to prompt:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ultrawork: Implement a React component with dark mode.</span><br></pre></td></tr></table></figure>
+
+<p><strong>Effect</strong>:</p>
+<ul>
+<li>Sisyphus takes over</li>
+<li>Auto-assign sub-tasks to specialized agents</li>
+<li>Parallel execution</li>
+<li>100% completion before stopping</li>
+</ul>
+<h3 id="6-4-Multi-Agent-vs-Single-Agent"><a href="#6-4-Multi-Agent-vs-Single-Agent" class="headerlink" title="6.4 Multi-Agent vs Single-Agent"></a>6.4 Multi-Agent vs Single-Agent</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Single-Agent:</span><br><span class="line">User → One AI → All tasks (serial)</span><br><span class="line"></span><br><span class="line">Multi-Agent:</span><br><span class="line">User → Sisyphus → Parallel dispatch</span><br><span class="line">  ├─→ Hephaestus (deep analysis)</span><br><span class="line">  ├─→ Prometheus (planing)</span><br><span class="line">  └─→ Atlas (execution)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>[!NOTE]<br><strong>Token Warning</strong>: Multi-agent mode significantly increases token usage.</p>
+</blockquote>
+<h3 id="6-5-Install-Oh-My-OpenCode"><a href="#6-5-Install-Oh-My-OpenCode" class="headerlink" title="6.5 Install Oh My OpenCode"></a>6.5 Install Oh My OpenCode</h3><p>Paste into OpenCode:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Follow the installation guide:</span><br><span class="line">https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/refs/heads/master/docs/guide/installation.md</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-6-Additional-Features"><a href="#6-6-Additional-Features" class="headerlink" title="6.6 Additional Features"></a>6.6 Additional Features</h3><table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>20+ Hooks</strong></td>
+<td>Workflow automation</td>
+</tr>
+<tr>
+<td><strong>MCP Integration</strong></td>
+<td>Context7, grep.app</td>
+</tr>
+<tr>
+<td><strong>LSP Support</strong></td>
+<td>Refactoring, navigation</td>
+</tr>
+<tr>
+<td><strong>Multi-Model</strong></td>
+<td>Auto task allocation</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="7-Summary"><a href="#7-Summary" class="headerlink" title="7. Summary"></a>7. Summary</h2><h3 id="7-1-OpenCode-Value"><a href="#7-1-OpenCode-Value" class="headerlink" title="7.1 OpenCode Value"></a>7.1 OpenCode Value</h3><ol>
+<li><strong>Open Source</strong>: No lock-in</li>
+<li><strong>Privacy First</strong>: Local models</li>
+<li><strong>Multi-Model</strong>: 75+ providers</li>
+<li><strong>Closed-Loop</strong>: Auto-fix until success</li>
+</ol>
+<h3 id="7-2-Oh-My-OpenCode-Benefits"><a href="#7-2-Oh-My-OpenCode-Benefits" class="headerlink" title="7.2 Oh My OpenCode Benefits"></a>7.2 Oh My OpenCode Benefits</h3><ul>
+<li>Multi-agent collaboration</li>
+<li>Hook automation</li>
+<li>Specialized division: Sisyphus (orchestration), Hephaestus (deep analysis), Prometheus (planing), Atlas (execution)</li>
+</ul>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://opencode.ai/">OpenCode Official</a></li>
+<li><a target="_blank" rel="noopener" href="https://opencode.ai/docs">OpenCode Docs</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/anomalyco/opencode">GitHub</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/code-yeongyu/oh-my-opencode">Oh My OpenCode</a></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://frozenyears.github.io/Homepage">FrozenYears</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://frozenyears.github.io/2026/02/22/OpenCode-Tutorial/">http://frozenyears.github.io/2026/02/22/OpenCode-Tutorial/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Tutorial/">Tutorial</a><a class="post-meta__tags" href="/tags/AI-Agent/">AI-Agent</a><a class="post-meta__tags" href="/tags/OpenCode/">OpenCode</a><a class="post-meta__tags" href="/tags/Oh-My-OpenCode/">Oh-My-OpenCode</a><a class="post-meta__tags" href="/tags/CLI/">CLI</a><a class="post-meta__tags" href="/tags/Ollama/">Ollama</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2026/02/14/Why-Return-to-CLI-for-AI-Coding/" title="Why Return to CLI for Modern Development Tools"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next</div><div class="next_info">Why Return to CLI for Modern Development Tools</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2025/07/18/Voicemeeter-RVC-Voice-Changer-Tutorial/" title="Voicemeeter &amp; RVC Voice Changer Tutorial"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="fas fa-history fa-fw"></i> 2026-02-17</div><div class="title">Voicemeeter &amp; RVC Voice Changer Tutorial</div></div></a></div><div><a href="/2026/02/14/Why-Return-to-CLI-for-AI-Coding/" title="Why Return to CLI for Modern Development Tools"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="fas fa-history fa-fw"></i> 2026-02-22</div><div class="title">Why Return to CLI for Modern Development Tools</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">FrozenYears</div><div class="author-info__description">Hi, there!</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">5</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/FrozenYears" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:1939648535@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">What's up!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Table-of-Contents"><span class="toc-number">1.</span> <span class="toc-text">Table of Contents</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Overview"><span class="toc-number">2.</span> <span class="toc-text">1. Overview</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-What-is-OpenCode"><span class="toc-number">2.1.</span> <span class="toc-text">1.1 What is OpenCode?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-Core-Features"><span class="toc-number">2.2.</span> <span class="toc-text">1.2 Core Features</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Why-CLI-over-Web-Chat"><span class="toc-number">3.</span> <span class="toc-text">2. Why CLI over Web Chat</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-Core-Differences"><span class="toc-number">3.1.</span> <span class="toc-text">2.1 Core Differences</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-Key-Changes"><span class="toc-number">3.2.</span> <span class="toc-text">2.2 Key Changes</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Installation"><span class="toc-number">4.</span> <span class="toc-text">3. Installation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-Quick-Install"><span class="toc-number">4.1.</span> <span class="toc-text">3.1 Quick Install</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-Verify-Installation"><span class="toc-number">4.2.</span> <span class="toc-text">3.2 Verify Installation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-First-Launch"><span class="toc-number">4.3.</span> <span class="toc-text">3.3 First Launch</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Commands-Models"><span class="toc-number">5.</span> <span class="toc-text">4. Commands &amp; Models</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-Slash-Commands"><span class="toc-number">5.1.</span> <span class="toc-text">4.1 Slash Commands</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-Free-Models"><span class="toc-number">5.2.</span> <span class="toc-text">4.2 Free Models</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-Switch-Model"><span class="toc-number">5.3.</span> <span class="toc-text">4.3 Switch Model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-Agents"><span class="toc-number">5.4.</span> <span class="toc-text">4.4 Agents</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Configuration"><span class="toc-number">6.</span> <span class="toc-text">5. Configuration</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-Config-Location"><span class="toc-number">6.1.</span> <span class="toc-text">5.1 Config Location</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-Basic-Config"><span class="toc-number">6.2.</span> <span class="toc-text">5.2 Basic Config</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-Multi-Model-Config"><span class="toc-number">6.3.</span> <span class="toc-text">5.3 Multi-Model Config</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-Local-Ollama-Setup-Configure-A-Local-LLM"><span class="toc-number">6.4.</span> <span class="toc-text">*5.4 Local Ollama Setup (Configure A Local LLM)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Step-0-Configure-Environment-Variables"><span class="toc-number">6.4.1.</span> <span class="toc-text">Step 0: Configure Environment Variables</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step-1-Install-Ollama"><span class="toc-number">6.4.2.</span> <span class="toc-text">Step 1: Install Ollama</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step-2-Pull-Models"><span class="toc-number">6.4.3.</span> <span class="toc-text">Step 2: Pull Models</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step-3-Configure-OpenCode"><span class="toc-number">6.4.4.</span> <span class="toc-text">Step 3: Configure OpenCode</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-5-Model-Selection-Guide"><span class="toc-number">6.5.</span> <span class="toc-text">5.5 Model Selection Guide</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Oh-My-OpenCode-Plugin"><span class="toc-number">7.</span> <span class="toc-text">6. Oh My OpenCode Plugin</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-What-is-Oh-My-OpenCode"><span class="toc-number">7.1.</span> <span class="toc-text">6.1 What is Oh My OpenCode?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-Core-Agents"><span class="toc-number">7.2.</span> <span class="toc-text">6.2 Core Agents</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-ULW-Trigger"><span class="toc-number">7.3.</span> <span class="toc-text">6.3 ULW Trigger</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-4-Multi-Agent-vs-Single-Agent"><span class="toc-number">7.4.</span> <span class="toc-text">6.4 Multi-Agent vs Single-Agent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-5-Install-Oh-My-OpenCode"><span class="toc-number">7.5.</span> <span class="toc-text">6.5 Install Oh My OpenCode</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-6-Additional-Features"><span class="toc-number">7.6.</span> <span class="toc-text">6.6 Additional Features</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-Summary"><span class="toc-number">8.</span> <span class="toc-text">7. Summary</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-OpenCode-Value"><span class="toc-number">8.1.</span> <span class="toc-text">7.1 OpenCode Value</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-Oh-My-OpenCode-Benefits"><span class="toc-number">8.2.</span> <span class="toc-text">7.2 Oh My OpenCode Benefits</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">9.</span> <span class="toc-text">References</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/22/OpenCode-Tutorial/" title="OpenCode Tutorial">OpenCode Tutorial</a><time datetime="2026-02-21T16:00:00.000Z" title="Created 2026-02-22 00:00:00">2026-02-22</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/14/Why-Return-to-CLI-for-AI-Coding/" title="Why Return to CLI for Modern Development Tools">Why Return to CLI for Modern Development Tools</a><time datetime="2026-02-13T16:00:00.000Z" title="Created 2026-02-14 00:00:00">2026-02-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/18/Markdown-Syntax-in-Obsidian/" title="Markdown Syntax in Obsidian">Markdown Syntax in Obsidian</a><time datetime="2025-07-18T03:53:39.000Z" title="Created 2025-07-18 11:53:39">2025-07-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/18/Voicemeeter-RVC-Voice-Changer-Tutorial/" title="Voicemeeter &amp; RVC Voice Changer Tutorial">Voicemeeter &amp; RVC Voice Changer Tutorial</a><time datetime="2025-07-18T02:59:39.000Z" title="Created 2025-07-18 10:59:39">2025-07-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/01/Hello-World/" title="Hello World">Hello World</a><time datetime="2024-02-01T12:51:56.000Z" title="Created 2024-02-01 20:51:56">2024-02-01</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2026 By FrozenYears</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.12.0"></script><script src="/js/main.js?v=4.12.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
