@@ -2,6 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://frozenyears.github.io/about/index.html</loc>
+    
+    <lastmod>2026-03-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://frozenyears.github.io/2026/02/22/OpenCode-Tutorial/</loc>
+    
+    <lastmod>2026-03-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://frozenyears.github.io/2026/03/01/Browser-Extension-Recommendations/</loc>
+    
+    <lastmod>2026-03-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://frozenyears.github.io/2025/07/18/Voicemeeter-RVC-Voice-Changer-Tutorial/</loc>
     
     <lastmod>2026-02-23</lastmod>
@@ -11,25 +38,7 @@
   </url>
   
   <url>
-    <loc>http://frozenyears.github.io/about/index.html</loc>
-    
-    <lastmod>2026-02-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://frozenyears.github.io/2025/07/18/Markdown-Syntax-in-Obsidian/</loc>
-    
-    <lastmod>2026-02-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://frozenyears.github.io/2026/02/22/OpenCode-Tutorial/</loc>
     
     <lastmod>2026-02-23</lastmod>
     
@@ -85,7 +94,7 @@
 
   <url>
     <loc>http://frozenyears.github.io/</loc>
-    <lastmod>2026-02-25</lastmod>
+    <lastmod>2026-03-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -93,105 +102,119 @@
   
   <url>
     <loc>http://frozenyears.github.io/tags/Markdown/</loc>
-    <lastmod>2026-02-25</lastmod>
+    <lastmod>2026-03-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://frozenyears.github.io/tags/Obsidian/</loc>
-    <lastmod>2026-02-25</lastmod>
+    <lastmod>2026-03-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://frozenyears.github.io/tags/Manual/</loc>
-    <lastmod>2026-02-25</lastmod>
+    <lastmod>2026-03-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://frozenyears.github.io/tags/Tutorial/</loc>
-    <lastmod>2026-02-25</lastmod>
+    <lastmod>2026-03-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://frozenyears.github.io/tags/OpenCode/</loc>
-    <lastmod>2026-02-25</lastmod>
+    <lastmod>2026-03-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://frozenyears.github.io/tags/Ollama/</loc>
-    <lastmod>2026-02-25</lastmod>
+    <lastmod>2026-03-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://frozenyears.github.io/tags/CLI/</loc>
-    <lastmod>2026-02-25</lastmod>
+    <lastmod>2026-03-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://frozenyears.github.io/tags/AI-Agent/</loc>
-    <lastmod>2026-02-25</lastmod>
+    <lastmod>2026-03-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://frozenyears.github.io/tags/Oh-My-OpenCode/</loc>
-    <lastmod>2026-02-25</lastmod>
+    <lastmod>2026-03-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://frozenyears.github.io/tags/Software/</loc>
-    <lastmod>2026-02-25</lastmod>
+    <lastmod>2026-03-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://frozenyears.github.io/tags/Experience/</loc>
-    <lastmod>2026-02-25</lastmod>
+    <lastmod>2026-03-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://frozenyears.github.io/tags/Development/</loc>
-    <lastmod>2026-02-25</lastmod>
+    <lastmod>2026-03-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://frozenyears.github.io/tags/Tools/</loc>
-    <lastmod>2026-02-25</lastmod>
+    <lastmod>2026-03-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://frozenyears.github.io/tags/Productivity/</loc>
-    <lastmod>2026-02-25</lastmod>
+    <lastmod>2026-03-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://frozenyears.github.io/tags/Reflection/</loc>
-    <lastmod>2026-02-25</lastmod>
+    <lastmod>2026-03-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://frozenyears.github.io/tags/Browser/</loc>
+    <lastmod>2026-03-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://frozenyears.github.io/tags/Extensions/</loc>
+    <lastmod>2026-03-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -200,14 +223,21 @@
   
   <url>
     <loc>http://frozenyears.github.io/categories/Tutorial/</loc>
-    <lastmod>2026-02-25</lastmod>
+    <lastmod>2026-03-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://frozenyears.github.io/categories/Reflection/</loc>
-    <lastmod>2026-02-25</lastmod>
+    <lastmod>2026-03-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://frozenyears.github.io/categories/Resources/</loc>
+    <lastmod>2026-03-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
