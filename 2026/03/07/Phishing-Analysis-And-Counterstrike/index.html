@@ -1,0 +1,375 @@
+<!DOCTYPE html><html lang="en" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Phishing Full-Chain Analysis &amp; Counter-Strike | FrozenYears's Blog</title><meta name="author" content="FrozenYears"><meta name="copyright" content="FrozenYears"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="A full-cycle walkthrough of a credential-harvesting phishing campaign — covering DNS forensics, WAF bypass, HAR traffic analysis, data poisoning, and cloud infrastructure takedown.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Phishing Full-Chain Analysis &amp; Counter-Strike">
+<meta property="og:url" content="http://frozenyears.github.io/2026/03/07/Phishing-Analysis-And-Counterstrike/index.html">
+<meta property="og:site_name" content="FrozenYears&#39;s Blog">
+<meta property="og:description" content="A full-cycle walkthrough of a credential-harvesting phishing campaign — covering DNS forensics, WAF bypass, HAR traffic analysis, data poisoning, and cloud infrastructure takedown.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://frozenyears.github.io/2026/03/07/Phishing-Analysis-And-Counterstrike/cover.png">
+<meta property="article:published_time" content="2026-03-06T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-08T09:38:49.860Z">
+<meta property="article:author" content="FrozenYears">
+<meta property="article:tag" content="Phishing">
+<meta property="article:tag" content="Reverse Engineering">
+<meta property="article:tag" content="WAF Evasion">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Web">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://frozenyears.github.io/2026/03/07/Phishing-Analysis-And-Counterstrike/cover.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://frozenyears.github.io/2026/03/07/Phishing-Analysis-And-Counterstrike/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.12.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: FrozenYears","link":"Link: ","source":"Source: FrozenYears's Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.0/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Phishing Full-Chain Analysis & Counter-Strike',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-03-08 17:38:49'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/font.css"><link rel="stylesheet" href="/css/callout-dark.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">7</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">22</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">4</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url('/2026/03/07/Phishing-Analysis-And-Counterstrike/cover.png')"><nav id="nav"><span id="blog-info"><a href="/" title="FrozenYears's Blog"><span class="site-name">FrozenYears's Blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Phishing Full-Chain Analysis &amp; Counter-Strike</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2026-03-06T16:00:00.000Z" title="Created 2026-03-07 00:00:00">2026-03-07</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-03-08T09:38:49.860Z" title="Updated 2026-03-08 17:38:49">2026-03-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Hands-on-Practice/">Hands-on Practice</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">2.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>13mins</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Phishing Full-Chain Analysis &amp; Counter-Strike"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><div class="note info flat">
+  <i class="fas fa-bullhorn" style="margin-right: 6px;"></i>
+  <strong>Abstract:</strong> A full-cycle walkthrough of a credential-harvesting phishing campaign — covering DNS forensics, WAF bypass, HAR traffic analysis, data poisoning, and cloud infrastructure takedown.
+</div>
+
+
+<h2 id="1-Overview"><a href="#1-Overview" class="headerlink" title="1. Overview"></a>1. Overview</h2><p>My teacher sent a link like this all of a sudden. The message read:</p>
+<blockquote>
+<p>DO NOT CLICK THE LINK OR ENTER YOUR INFORMATION</p>
+</blockquote>
+<blockquote>
+<p>【校园舞蹈比赛】麻烦帮投一下2号，谢谢！<br><a target="_blank" rel="noopener" href="http://www.meituan.com.data.zhihu.com.pic.cdjubao.org/1Gq5clwKm8gJJ9oaQ%2500wKHp6fDaCp3d4lz7j4aAQfTx?id=a49&_wwv=1127777&f=pupt11141&x9w4r4">http://www.meituan.com.data.zhihu.com.pic.cdjubao.org/1Gq5clwKm8gJJ9oaQ%2500wKHp6fDaCp3d4lz7j4aAQfTx?id=a49&amp;_wwv=1127777&amp;f=pupt11141&amp;x9w4r4</a><br>支持一下2号，很快就第一名了！每人可以投2票！</p>
+</blockquote>
+<p>The URL was long enough that most people wouldn’t read it carefully. And the scenario is common in daily life.</p>
+<p>This post documents what happened when I got this link.</p>
+<p>The full chain covers: <strong>bait capture</strong> and <strong>sandboxed reconnaissance</strong> → <strong>WAF fingerprint bypass</strong> → <strong>live payload extraction</strong> → <strong>HAR-based traffic forensics</strong> → <strong>dirty data poisoning</strong> → <strong>cloud infrastructure abuse reporting</strong>.</p>
+<div class="note warning flat"><p><strong>Safety Boundary</strong>: All testing with suspicious parameters must be performed inside a <strong>sandbox</strong> or <strong>isolated VM</strong>. Never scan malicious QR codes or enter real credentials from your host machine’s native social apps.</p>
+</div>
+
+<hr>
+<h2 id="2-Recon-Isolation"><a href="#2-Recon-Isolation" class="headerlink" title="2. Recon &amp; Isolation"></a>2. Recon &amp; Isolation</h2><h3 id="2-1-URL-Spoofing-—-The-Subdomain-Trick"><a href="#2-1-URL-Spoofing-—-The-Subdomain-Trick" class="headerlink" title="2.1 URL Spoofing — The Subdomain Trick"></a>2.1 URL Spoofing — The Subdomain Trick</h3><p>The bait URL looked like this:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.meituan.com.data.zhihu.com.pic.cdjubao.org/...</span><br></pre></td></tr></table></figure>
+
+<p>At a glance, it reads <code>meituan.com</code> and <code>zhihu.com</code> — two well-known Chinese platforms. Most users stop reading there.</p>
+<p>The actual resolution logic doesn’t work left-to-right. <strong>DNS parses from right to left</strong>: the real domain is <strong><code>cdjubao.org</code></strong>. Everything to the left is <strong>subdomain noise</strong> — crafted specifically to hit the <strong>brand-recognition blindspot</strong> of non-technical users.</p>
+<div class="note info flat"><p><strong>Rule of Thumb</strong>: To find the real domain in any suspicious URL, <strong>read it right-to-left</strong>. Stop at the first dot after the TLD. That’s who actually owns it.</p>
+</div>
+
+<img src="/2026/03/07/Phishing-Analysis-And-Counterstrike/2.png" class="" title="The phishing URL in the address bar — real domain is cdjubao.org">
+
+<h3 id="2-2-Infrastructure-Reconnaissance"><a href="#2-2-Infrastructure-Reconnaissance" class="headerlink" title="2.2 Infrastructure Reconnaissance"></a>2.2 Infrastructure Reconnaissance</h3><p>First stop: <strong>WHOIS</strong>.</p>
+<img src="/2026/03/07/Phishing-Analysis-And-Counterstrike/0-whois.png" class="" title="WHOIS lookup for cdjubao.org">
+
+<p>The data tells a clear story:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Field</th>
+<th align="left">Value</th>
+<th align="left">Significance</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>Registrar</strong></td>
+<td align="left">NameSilo, LLC</td>
+<td align="left"><strong>Privacy-shielding registrar</strong>, popular with throwaway domains</td>
+</tr>
+<tr>
+<td align="left"><strong>Creation Date</strong></td>
+<td align="left">2026-02-27</td>
+<td align="left"><strong>8 days old</strong> at time of discovery</td>
+</tr>
+<tr>
+<td align="left"><strong>Name Servers</strong></td>
+<td align="left"><code>june.ns.cloudflare.com</code></td>
+<td align="left">DNS routed through <strong>Cloudflare CDN</strong></td>
+</tr>
+<tr>
+<td align="left"><strong>DNSSEC</strong></td>
+<td align="left">Unsigned</td>
+<td align="left">No additional DNS security</td>
+</tr>
+</tbody></table>
+<p><strong>Eight days.</strong> This is the playbook for <strong>throwaway domain</strong> infrastructure: register cheap, run the campaign, abandon before takedowns catch up. The combination of <strong>NameSilo</strong> (privacy protection enabled by default) + <strong>Cloudflare CDN</strong> + <strong>Alibaba Cloud Hong Kong</strong> origin server is a classic stack — it dodges mainland China’s <strong>ICP registration requirement</strong> while keeping latency low for the target demographic.</p>
+<hr>
+<h2 id="3-WAF-Web-Application-Firewalls-Evasion"><a href="#3-WAF-Web-Application-Firewalls-Evasion" class="headerlink" title="3. WAF ( Web Application Firewalls ) Evasion"></a>3. WAF ( Web Application Firewalls ) Evasion</h2><h3 id="3-1-The-Block-Page"><a href="#3-1-The-Block-Page" class="headerlink" title="3.1 The Block Page"></a>3.1 The Block Page</h3><p>First access attempt from the sandbox desktop browser: immediate block.</p>
+<img src="/2026/03/07/Phishing-Analysis-And-Counterstrike/1.png" class="" title="Alibaba Cloud WAF block page — 亲，访问被拒绝 (Access denied)">
+
+<p>The page loads <code>punishpage.min.js</code> and redirects to <code>1688.com</code>. This isn’t a generic 403 — it’s an <strong>Alibaba Cloud WAF</strong> interception page, which means the origin is running behind Aliyun’s protection layer.</p>
+<p>Modern phishing kits don’t just sit open on the internet. They deploy <strong>environment fingerprinting</strong>: only serve the real payload to traffic that matches a specific profile — <strong>QQ&#x2F;WeChat in-app browser UA</strong> + <strong>mainland China IP</strong>. Everything else gets a decoy block.</p>
+<p>This is also why automated scanners like <strong>VirusTotal</strong> and <strong>urlscan.io</strong> rate these sites clean: they come from overseas IPs with desktop browser UAs, triggering <strong>HTTP 400&#x2F;307 redirects</strong> before ever seeing the actual phishing page. The page title that urlscan.io fetches is random gibberish like <code>gdfqqovxhq</code> — a telltale sign of <strong>automated phishing kit packing tools</strong>.</p>
+<h3 id="3-2-Injecting-the-Right-User-Agent"><a href="#3-2-Injecting-the-Right-User-Agent" class="headerlink" title="3.2 Injecting the Right User-Agent"></a>3.2 Injecting the Right User-Agent</h3><p>The fix is surgical: ditch the default mobile emulation UA, inject a high-fidelity <strong>Tencent-specific User-Agent</strong> directly via <strong>DevTools → Network conditions</strong>.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Mozilla/5.0 (Linux; Android 13; M2102K1C Build/TKQ1.220829.002; wv) </span><br><span class="line">AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/114.0.5735.277 </span><br><span class="line">Mobile Safari/537.36 V1_AND_SQ_8.9.71_3494_YYB_D QQ/8.9.71.12145 NetType/WIFI</span><br></pre></td></tr></table></figure>
+
+<p>The authentication signal is the tail: <strong><code>QQ/8.9.71.12145</code></strong>. That’s the <strong>QQ in-app WebView identifier</strong>. Without it, the WAF gate stays shut.</p>
+<img src="/2026/03/07/Phishing-Analysis-And-Counterstrike/2.png" class="" title="DevTools Network conditions panel — custom QQ UA injected">
+
+<p>With the correct UA in place, the gate opens. The page renders.</p>
+<hr>
+<h2 id="4-Reverse-Engineering-the-Payload"><a href="#4-Reverse-Engineering-the-Payload" class="headerlink" title="4. Reverse Engineering the Payload"></a>4. Reverse Engineering the Payload</h2><h3 id="4-1-What-the-Page-Actually-Is"><a href="#4-1-What-the-Page-Actually-Is" class="headerlink" title="4.1 What the Page Actually Is"></a>4.1 What the Page Actually Is</h3><p>The phishing site is dressed as a <strong>“campus dance competition voting page.”</strong> There’s no QR code scan in this flow — the victim clicks the link directly from the QQ chat message. The server detects the incoming <strong>User-Agent</strong>: if it identifies a <strong>QQ in-app WebView</strong>, the page silently redirects to the actual payload hosted at <code>http://tuixcdolo.cgpf.top.cdn.cloudflare.net/</code>. What loads is a crudely assembled voting page — convincing fake stats, tens of thousands of votes, over ninety thousand visitors. The actual <strong>credential-harvest mechanism</strong> is straightforward: click the vote button, get prompted to enter a <strong>phone number</strong>, receive an <strong>SMS verification code</strong>, then submit it to “log in and verify your vote.” That <strong>two-step sequence</strong> is the entire operation.</p>
+<img src="/2026/03/07/Phishing-Analysis-And-Counterstrike/4.png" class="" title="Phishing page — OTP entry form with network requests visible">
+
+<p>I needed to walk through the full credential submission flow without exposing real data. Solution: a <strong>virtual SMS platform</strong> (SMSOnline) to generate an isolated, <strong>disposable phone number</strong> and receive the verification code it would send.</p>
+<img src="/2026/03/07/Phishing-Analysis-And-Counterstrike/3.png" class="" title="Virtual SMS platform — receiving the OTP sent by the phishing backend">
+
+<p>With <strong><code>Preserve log</code></strong> enabled in DevTools, I walked through the entire flow — phone number entry, OTP receipt, submission — and exported the complete <strong>HAR file</strong>.</p>
+<h3 id="4-2-HAR-Analysis-—-Tracing-the-Exfiltration-Endpoints"><a href="#4-2-HAR-Analysis-—-Tracing-the-Exfiltration-Endpoints" class="headerlink" title="4.2 HAR Analysis — Tracing the Exfiltration Endpoints"></a>4.2 HAR Analysis — Tracing the Exfiltration Endpoints</h3><p>A <strong>HAR (HTTP Archive)</strong> file captures every network request made during a browser session. With the fake phone number (<code>18470552326</code>) and verification code (<code>448433</code>) in hand, a global search through the HAR immediately surfaces where those values went.</p>
+<img src="/2026/03/07/Phishing-Analysis-And-Counterstrike/6.png" class="" title="HAR file in VS Code — phone number 18470552326 found in POST payload to v_post.asp">
+
+<img src="/2026/03/07/Phishing-Analysis-And-Counterstrike/7.png" class="" title="HAR file in VS Code — verification code 448433 found in POST payload to v_submit.asp">
+
+<p>The kit uses a clean <strong>two-step exfiltration pattern</strong>:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Step</th>
+<th align="left">Endpoint</th>
+<th align="left">Method</th>
+<th align="left">Payload</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>1. Phone collection</strong></td>
+<td align="left"><code>/v_post.asp</code></td>
+<td align="left">POST</td>
+<td align="left"><code>sex=on&amp;t5=[PHONE_NUMBER]&amp;ud=&amp;address=1&amp;toip=&amp;name=</code></td>
+</tr>
+<tr>
+<td align="left"><strong>2. OTP&#x2F;credential collection</strong></td>
+<td align="left"><code>/v_submit.asp</code></td>
+<td align="left">POST</td>
+<td align="left"><code>cid=undefined&amp;ud=undefined&amp;p=undefined&amp;ddid=111814&amp;pass=[VERIFICATION_CODE]</code></td>
+</tr>
+</tbody></table>
+<p>Both hit the backend CDN node at <code>szopcdekli.bcdefghijkl.shop.cdn.cloudflare.net</code> — a <strong>Cloudflare-proxied subdomain</strong> that hides the actual origin IP. <strong>Credentials transmitted in plaintext</strong>, no encryption, no obfuscation. The backend just collects rows.</p>
+<div class="note info flat"><p><strong>On the “verifying” loop</strong>: After OTP submission, the page shows a <strong>fake QQ verification spinner</strong> with a countdown (30–120 seconds). In the background, <code>get_n.asp</code> fires repeated <strong>XHR polls</strong>. The victim waits, thinking something is happening. Nothing is — the credentials were already sent on first submission. <strong>The loop is theatre</strong> to buy time before the victim realizes something is wrong.</p>
+</div>
+
+<img src="/2026/03/07/Phishing-Analysis-And-Counterstrike/5.png" class="" title="Fake QQ verification loop — get_n.asp polling visible in Network tab">
+
+<p>Gemini 3.1 Pro wrotes a small Python script to automate the HAR analysis — feed it the HAR file plus your test phone number and OTP, and it walks every request looking for your values:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">analyze_har_for_phishing</span>(<span class="params">har_file_path, target_phone, target_code</span>):</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(har_file_path, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        har_data = json.load(f)</span><br><span class="line"></span><br><span class="line">    entries = har_data.get(<span class="string">&#x27;log&#x27;</span>, &#123;&#125;).get(<span class="string">&#x27;entries&#x27;</span>, [])</span><br><span class="line">    malicious_endpoints = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> entry <span class="keyword">in</span> entries:</span><br><span class="line">        request = entry.get(<span class="string">&#x27;request&#x27;</span>, &#123;&#125;)</span><br><span class="line">        url = request.get(<span class="string">&#x27;url&#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">        method = request.get(<span class="string">&#x27;method&#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line"></span><br><span class="line">        post_data = request.get(<span class="string">&#x27;postData&#x27;</span>, &#123;&#125;)</span><br><span class="line">        post_text = urllib.parse.unquote(post_data.get(<span class="string">&#x27;text&#x27;</span>, <span class="string">&#x27;&#x27;</span>))</span><br><span class="line">        query_text = urllib.parse.unquote(<span class="built_in">str</span>(request.get(<span class="string">&#x27;queryString&#x27;</span>, [])))</span><br><span class="line"></span><br><span class="line">        is_suspicious = <span class="literal">False</span></span><br><span class="line">        <span class="keyword">if</span> target_phone <span class="keyword">in</span> post_text <span class="keyword">or</span> target_code <span class="keyword">in</span> post_text:</span><br><span class="line">            is_suspicious = <span class="literal">True</span></span><br><span class="line">            payload = post_text</span><br><span class="line">        <span class="keyword">elif</span> target_phone <span class="keyword">in</span> query_text <span class="keyword">or</span> target_code <span class="keyword">in</span> query_text:</span><br><span class="line">            is_suspicious = <span class="literal">True</span></span><br><span class="line">            payload = query_text</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> is_suspicious:</span><br><span class="line">            malicious_endpoints.append(&#123;</span><br><span class="line">                <span class="string">&quot;url&quot;</span>: url, <span class="string">&quot;method&quot;</span>: method,</span><br><span class="line">                <span class="string">&quot;payload&quot;</span>: payload,</span><br><span class="line">                <span class="string">&quot;ip&quot;</span>: entry.get(<span class="string">&#x27;serverIPAddress&#x27;</span>, <span class="string">&#x27;N/A&#x27;</span>)</span><br><span class="line">            &#125;)</span><br></pre></td></tr></table></figure>
+
+<img src="/2026/03/07/Phishing-Analysis-And-Counterstrike/8.png" class="" title="HAR analysis script output — 2 malicious endpoints confirmed">
+
+<p>Output confirmed <strong>two exfiltration endpoints</strong>, both <code>POST</code> to the Cloudflare-proxied CDN backend.</p>
+<hr>
+<h2 id="5-Active-Countermeasures"><a href="#5-Active-Countermeasures" class="headerlink" title="5. Active Countermeasures"></a>5. Active Countermeasures</h2><h3 id="5-1-Data-Poisoning"><a href="#5-1-Data-Poisoning" class="headerlink" title="5.1 Data Poisoning"></a>5.1 Data Poisoning</h3><p>With both endpoints identified and their <strong>payload structure</strong> known, the next step is to degrade the value of whatever data they’ve already collected.</p>
+<p>The idea: flood both endpoints with <strong>fake-but-plausible Chinese phone numbers</strong> and <strong>6-digit OTPs</strong>. The phone numbers follow real <strong>carrier prefixes</strong> (China Mobile, China Unicom, China Telecom) so they pass any basic regex validation on the backend. The <strong>signal-to-noise ratio</strong> in their database drops — whoever later tries to use that data for <strong>account takeover</strong> has to sift through thousands of dead entries.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">USER_AGENTS = [</span><br><span class="line">    <span class="string">&quot;Mozilla/5.0 (Linux; Android 13; M2102K1C Build/TKQ1.220829.002; wv) &quot;</span></span><br><span class="line">    <span class="string">&quot;AppleWebKit/537.36 ... QQ/8.9.71.12145 NetType/WIFI WebP/0.3.0 Pixel/1080&quot;</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">generate_fake_data</span>():</span><br><span class="line">    prefixes = [<span class="string">&#x27;138&#x27;</span>, <span class="string">&#x27;139&#x27;</span>, <span class="string">&#x27;150&#x27;</span>, <span class="string">&#x27;151&#x27;</span>, <span class="string">&#x27;152&#x27;</span>, <span class="string">&#x27;158&#x27;</span>, <span class="string">&#x27;159&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;182&#x27;</span>, <span class="string">&#x27;183&#x27;</span>, <span class="string">&#x27;187&#x27;</span>, <span class="string">&#x27;188&#x27;</span>, <span class="string">&#x27;130&#x27;</span>, <span class="string">&#x27;131&#x27;</span>, <span class="string">&#x27;132&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;155&#x27;</span>, <span class="string">&#x27;156&#x27;</span>, <span class="string">&#x27;185&#x27;</span>, <span class="string">&#x27;186&#x27;</span>, <span class="string">&#x27;133&#x27;</span>, <span class="string">&#x27;153&#x27;</span>, <span class="string">&#x27;180&#x27;</span>, <span class="string">&#x27;181&#x27;</span>, <span class="string">&#x27;189&#x27;</span>]</span><br><span class="line">    phone = random.choice(prefixes) + <span class="string">&#x27;&#x27;</span>.join(random.choices(string.digits, k=<span class="number">8</span>))</span><br><span class="line">    code = <span class="string">&#x27;&#x27;</span>.join(random.choices(string.digits, k=<span class="number">6</span>))</span><br><span class="line">    <span class="keyword">return</span> phone, code</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">attack_worker</span>(<span class="params">thread_id</span>):</span><br><span class="line">    session = requests.Session()</span><br><span class="line">    phone, code = generate_fake_data()</span><br><span class="line">    headers = &#123;</span><br><span class="line">        <span class="string">&quot;User-Agent&quot;</span>: random.choice(USER_AGENTS),</span><br><span class="line">        <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;application/x-www-form-urlencoded&quot;</span>,</span><br><span class="line">        <span class="string">&quot;X-Forwarded-For&quot;</span>: <span class="string">f&quot;<span class="subst">&#123;random.randint(<span class="number">1</span>,<span class="number">255</span>)&#125;</span>.<span class="subst">&#123;random.randint(<span class="number">1</span>,<span class="number">255</span>)&#125;</span>&quot;</span></span><br><span class="line">                           <span class="string">f&quot;.<span class="subst">&#123;random.randint(<span class="number">1</span>,<span class="number">255</span>)&#125;</span>.<span class="subst">&#123;random.randint(<span class="number">1</span>,<span class="number">255</span>)&#125;</span>&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">    payload_post = <span class="string">f&quot;sex=on&amp;t5=<span class="subst">&#123;phone&#125;</span>&amp;ud=&amp;address=1&amp;toip=&amp;name=&quot;</span></span><br><span class="line">    payload_submit = <span class="string">f&quot;cid=undefined&amp;ud=undefined&amp;p=undefined&amp;ddid=111814&amp;pass=<span class="subst">&#123;code&#125;</span>&quot;</span></span><br><span class="line"></span><br><span class="line">    r1 = session.post(POST_URL, data=payload_post, headers=headers, timeout=<span class="number">5</span>)</span><br><span class="line">    r2 = session.post(SUBMIT_URL, data=payload_submit, headers=headers, timeout=<span class="number">5</span>)</span><br><span class="line">    <span class="keyword">if</span> r2.status_code == <span class="number">200</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;[Thread-<span class="subst">&#123;thread_id&#125;</span>] [+] Poisoned: <span class="subst">&#123;phone&#125;</span> | <span class="subst">&#123;code&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<img src="/2026/03/07/Phishing-Analysis-And-Counterstrike/9.png" class="" title="fuckphishing.py running — concurrent poisoning threads submitting fake credentials">
+
+<p>A few things to keep in mind with this approach:</p>
+<ul>
+<li><strong>Rate limiting is real</strong>: Too many concurrent threads from one exit IP will hit the CDN’s <strong>rate limiter</strong> or trigger a <strong>“5-second shield.”</strong> Keep concurrency low (<code>5–10 threads</code>) and add a small sleep between submissions.</li>
+<li><strong>The honesty check</strong>: Unless you run this 24&#x2F;7, the backend can just filter outliers and clean the data. Poisoning <strong>degrades quality</strong> but doesn’t stop the operation. It’s a speed bump, not a wall.</li>
+<li><strong>The <code>X-Forwarded-For</code> header</strong>: Randomized to <strong>mask the source IP</strong>. The backend likely logs this header for geo-filtering purposes.</li>
+</ul>
+<h3 id="5-2-Infrastructure-Takedown"><a href="#5-2-Infrastructure-Takedown" class="headerlink" title="5.2 Infrastructure Takedown"></a>5.2 Infrastructure Takedown</h3><p>The higher-ROI move is <strong>cutting off the infrastructure</strong> entirely rather than polluting data. Two vectors:</p>
+<p><strong>1. Cloudflare Abuse Report</strong><br>Submit at <code>https://abuse.cloudflare.com/phishing</code>. Include:</p>
+<ul>
+<li>The full phishing URL</li>
+<li>The CDN backend hostname (<code>szopcdekli.bcdefghijkl.shop.cdn.cloudflare.net</code>)</li>
+<li>HAR screenshots showing <strong>plaintext credential exfiltration</strong> with the target API endpoints clearly visible</li>
+<li>Structured <strong>IoC table</strong></li>
+</ul>
+<p><strong>2. NameSilo Registrar Report</strong><br>Email <code>abuse@namesilo.com</code> with the domain (<code>cdjubao.org</code>), a short description of “Credentials Phishing,” and the same evidence. NameSilo typically issues a <strong><code>clientHold</code></strong> (suspension of DNS resolution) within 24 hours of verification.</p>
+<img src="/2026/03/07/Phishing-Analysis-And-Counterstrike/10.png" class="" title="Sent abuse reports to both Cloudflare and NameSilo">
+
+<img src="/2026/03/07/Phishing-Analysis-And-Counterstrike/11.png" class="" title="Cloudflare Trust &amp; Safety auto-acknowledgment — ticket #21984966">
+
+<div class="note warning flat"><p><strong>On Cloudflare’s response</strong>: Their automated acknowledgment clarifies that Cloudflare is a <strong>pass-through CDN</strong>, not a hosting provider — they cannot remove the hosted content directly. What they <em>can</em> do is <strong>drop the domain from their network</strong>, forcing traffic to the raw origin IP (in this case the Alibaba Cloud Hong Kong node at <code>47.76.241.235</code>), which significantly degrades delivery and removes the <strong>CDN-based IP anonymization</strong>. For full takedown, the <strong>registrar (NameSilo) report</strong> is the more effective vector — a <code>clientHold</code> <strong>kills DNS resolution entirely</strong>.</p>
+</div>
+
+<hr>
+<h2 id="6-Threat-Intelligence-—-IoC-Archive"><a href="#6-Threat-Intelligence-—-IoC-Archive" class="headerlink" title="6. Threat Intelligence — IoC Archive"></a>6. Threat Intelligence — IoC Archive</h2><p>For anyone who encountered this campaign or wants to add these indicators to a blocklist:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Type</th>
+<th align="left">Value</th>
+<th align="left">Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>Spoofing URL (Frontend)</strong></td>
+<td align="left"><code>http://www.meituan.com.data.zhihu.com.pic.cdjubao.org</code></td>
+<td align="left">Entry point — fake campus voting page</td>
+</tr>
+<tr>
+<td align="left"><strong>C2 CDN Node (Backend)</strong></td>
+<td align="left"><code>szopcdekli.bcdefghijkl.shop.cdn.cloudflare.net</code></td>
+<td align="left">Hidden behind Cloudflare proxy</td>
+</tr>
+<tr>
+<td align="left"><strong>Credential API 1</strong></td>
+<td align="left"><code>/v_post.asp</code></td>
+<td align="left">POST — <strong>phone number exfiltration</strong></td>
+</tr>
+<tr>
+<td align="left"><strong>Credential API 2</strong></td>
+<td align="left"><code>/v_submit.asp</code></td>
+<td align="left">POST — <strong>OTP&#x2F;password exfiltration</strong></td>
+</tr>
+<tr>
+<td align="left"><strong>Origin IP</strong></td>
+<td align="left"><code>47.76.241.235</code></td>
+<td align="left">Alibaba Cloud Hong Kong (when not behind CDN)</td>
+</tr>
+<tr>
+<td align="left"><strong>Registrar</strong></td>
+<td align="left">NameSilo, LLC</td>
+<td align="left">Abuse: <code>abuse@namesilo.com</code></td>
+</tr>
+<tr>
+<td align="left"><strong>Domain Age</strong></td>
+<td align="left">8 days</td>
+<td align="left">Registered 2026-02-27, discovered 2026-03-07</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="7-Takeaways"><a href="#7-Takeaways" class="headerlink" title="7. Takeaways"></a>7. Takeaways</h2><p>A few things this exercise confirmed:</p>
+<p><strong>The subdomain trick still works.</strong> Ordinary users read URLs <strong>left-to-right</strong> and stop at the first recognizable brand name. The actual <strong>TLD</strong> is at the far right and most people never look there. The fix is simple <strong>pattern recognition</strong> — but you have to know to look.</p>
+<p><strong>Environment fingerprinting is increasingly standard.</strong> The kit refused to serve the payload to anything that didn’t look like a real <strong>QQ WebView</strong> from a <strong>Chinese IP</strong>. This is exactly why <strong>automated scanning services</strong> rate these sites clean — they fail the <strong>fingerprint check</strong> before seeing any malicious content. <strong>Manual investigation with the right UA</strong> is the only reliable detection method.</p>
+<p><strong>The full stack is designed for evasion.</strong> <strong>NameSilo</strong> (privacy-shielded registration) + <strong>Cloudflare CDN</strong> (IP anonymization) + <strong>Alibaba Cloud HK origin</strong> (low latency, no ICP requirement) — every layer adds friction for defenders. The chain isn’t accidental.</p>
+<p><strong>Infrastructure attacks beat data attacks.</strong> Running 500 fake credential submissions is satisfying but ultimately <strong>low-impact</strong>. A single well-documented <strong>abuse report to the registrar</strong> with clear evidence of credential exfiltration does more. <strong>Takedown &gt; poisoning</strong>.</p>
+<hr>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://abuse.cloudflare.com/phishing">Cloudflare Phishing Abuse Form</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.namesilo.com/whois/">NameSilo WHOIS</a></li>
+<li><a target="_blank" rel="noopener" href="https://urlscan.io/">urlscan.io</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.smsonline.cloud/">SMSOnline Virtual Numbers</a></li>
+<li><a target="_blank" rel="noopener" href="https://lookup.icann.org/">ICANN WHOIS</a></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="/about/">FrozenYears</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://frozenyears.github.io/2026/03/07/Phishing-Analysis-And-Counterstrike/">http://frozenyears.github.io/2026/03/07/Phishing-Analysis-And-Counterstrike/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Phishing/">Phishing</a><a class="post-meta__tags" href="/tags/Reverse-Engineering/">Reverse Engineering</a><a class="post-meta__tags" href="/tags/WAF-Evasion/">WAF Evasion</a><a class="post-meta__tags" href="/tags/Python/">Python</a><a class="post-meta__tags" href="/tags/Web/">Web</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2026/03/01/Browser-Extension-Recommendations/" title="Browser Extension Recommendations"><img class="cover" src="/2026/03/01/Browser-Extension-Recommendations/cover.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next</div><div class="next_info">Browser Extension Recommendations</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">FrozenYears</div><div class="author-info__description">Hi, there!</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">7</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">22</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">4</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/FrozenYears" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:1939648535@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Overview"><span class="toc-text">1. Overview</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Recon-Isolation"><span class="toc-text">2. Recon &amp; Isolation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-URL-Spoofing-%E2%80%94-The-Subdomain-Trick"><span class="toc-text">2.1 URL Spoofing — The Subdomain Trick</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-Infrastructure-Reconnaissance"><span class="toc-text">2.2 Infrastructure Reconnaissance</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-WAF-Web-Application-Firewalls-Evasion"><span class="toc-text">3. WAF ( Web Application Firewalls ) Evasion</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-The-Block-Page"><span class="toc-text">3.1 The Block Page</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-Injecting-the-Right-User-Agent"><span class="toc-text">3.2 Injecting the Right User-Agent</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Reverse-Engineering-the-Payload"><span class="toc-text">4. Reverse Engineering the Payload</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-What-the-Page-Actually-Is"><span class="toc-text">4.1 What the Page Actually Is</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-HAR-Analysis-%E2%80%94-Tracing-the-Exfiltration-Endpoints"><span class="toc-text">4.2 HAR Analysis — Tracing the Exfiltration Endpoints</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Active-Countermeasures"><span class="toc-text">5. Active Countermeasures</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-Data-Poisoning"><span class="toc-text">5.1 Data Poisoning</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-Infrastructure-Takedown"><span class="toc-text">5.2 Infrastructure Takedown</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Threat-Intelligence-%E2%80%94-IoC-Archive"><span class="toc-text">6. Threat Intelligence — IoC Archive</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-Takeaways"><span class="toc-text">7. Takeaways</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-text">References</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/03/07/Phishing-Analysis-And-Counterstrike/" title="Phishing Full-Chain Analysis &amp; Counter-Strike"><img src="/2026/03/07/Phishing-Analysis-And-Counterstrike/cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Phishing Full-Chain Analysis &amp; Counter-Strike"/></a><div class="content"><a class="title" href="/2026/03/07/Phishing-Analysis-And-Counterstrike/" title="Phishing Full-Chain Analysis &amp; Counter-Strike">Phishing Full-Chain Analysis &amp; Counter-Strike</a><time datetime="2026-03-06T16:00:00.000Z" title="Created 2026-03-07 00:00:00">2026-03-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/03/01/Browser-Extension-Recommendations/" title="Browser Extension Recommendations"><img src="/2026/03/01/Browser-Extension-Recommendations/cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Browser Extension Recommendations"/></a><div class="content"><a class="title" href="/2026/03/01/Browser-Extension-Recommendations/" title="Browser Extension Recommendations">Browser Extension Recommendations</a><time datetime="2026-02-28T16:00:00.000Z" title="Created 2026-03-01 00:00:00">2026-03-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/02/22/OpenCode-Tutorial/" title="OpenCode Tutorial"><img src="/2026/02/22/OpenCode-Tutorial/cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="OpenCode Tutorial"/></a><div class="content"><a class="title" href="/2026/02/22/OpenCode-Tutorial/" title="OpenCode Tutorial">OpenCode Tutorial</a><time datetime="2026-02-21T16:00:00.000Z" title="Created 2026-02-22 00:00:00">2026-02-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/02/14/Why-Return-to-CLI-for-AI-Coding/" title="Why Return to CLI for Modern Development Tools"><img src="/2026/02/14/Why-Return-to-CLI-for-AI-Coding/cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Why Return to CLI for Modern Development Tools"/></a><div class="content"><a class="title" href="/2026/02/14/Why-Return-to-CLI-for-AI-Coding/" title="Why Return to CLI for Modern Development Tools">Why Return to CLI for Modern Development Tools</a><time datetime="2026-02-13T16:00:00.000Z" title="Created 2026-02-14 00:00:00">2026-02-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/07/18/Markdown-Syntax-in-Obsidian/" title="Markdown Syntax in Obsidian"><img src="/2025/07/18/Markdown-Syntax-in-Obsidian/cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Markdown Syntax in Obsidian"/></a><div class="content"><a class="title" href="/2025/07/18/Markdown-Syntax-in-Obsidian/" title="Markdown Syntax in Obsidian">Markdown Syntax in Obsidian</a><time datetime="2025-07-18T03:53:39.000Z" title="Created 2025-07-18 11:53:39">2025-07-18</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2026 By FrozenYears</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.12.0"></script><script src="/js/main.js?v=4.12.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

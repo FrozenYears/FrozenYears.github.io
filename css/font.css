@@ -9,9 +9,9 @@
     src: url('/font/LXGWWenKai-Regular.woff2') format("truetype");
 }
 @font-face{
-    font-family: 'MVBoli';
+    font-family: 'CascadiaMono';
     font-display: swap;
-    src: url('/font/MVBoli.woff2') format("truetype");
+    src: url('/font/CascadiaMono.woff2') format("truetype");
 }
 /* body { */
     /* font-family: 'XWWK'; */
