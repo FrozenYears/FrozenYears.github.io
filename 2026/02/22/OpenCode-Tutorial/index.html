@@ -1,13 +1,13 @@
-<!DOCTYPE html><html lang="en" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>OpenCode Tutorial | FrozenYears's Blog</title><meta name="author" content="FrozenYears"><meta name="copyright" content="FrozenYears"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="A complete guide to OpenCode CLI - installation, local LLM configuration via Ollama, and multi-agent workflow optimization using the Oh-My-OpenCode plugin.">
+<!DOCTYPE html><html lang="en" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>OpenCode 使用教程 | FrozenYears's Blog</title><meta name="author" content="FrozenYears"><meta name="copyright" content="FrozenYears"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="OpenCode CLI 完整指南——安装、通过 Ollama 接入本地大模型、以及用 Oh-My-OpenCode 插件解锁多 Agent 协作。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OpenCode Tutorial">
+<meta property="og:title" content="OpenCode 使用教程">
 <meta property="og:url" content="http://frozenyears.github.io/2026/02/22/OpenCode-Tutorial/index.html">
 <meta property="og:site_name" content="FrozenYears&#39;s Blog">
-<meta property="og:description" content="A complete guide to OpenCode CLI - installation, local LLM configuration via Ollama, and multi-agent workflow optimization using the Oh-My-OpenCode plugin.">
+<meta property="og:description" content="OpenCode CLI 完整指南——安装、通过 Ollama 接入本地大模型、以及用 Oh-My-OpenCode 插件解锁多 Agent 协作。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://frozenyears.github.io/2026/02/22/OpenCode-Tutorial/cover.png">
 <meta property="article:published_time" content="2026-02-21T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-22T03:45:48.240Z">
+<meta property="article:modified_time" content="2026-09-04T04:25:42.022Z">
 <meta property="article:author" content="FrozenYears">
 <meta property="article:tag" content="Tutorial">
 <meta property="article:tag" content="OpenCode">
@@ -56,12 +56,12 @@
   },
   autoDarkmode: false
 }</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
-  title: 'OpenCode Tutorial',
+  title: 'OpenCode 使用教程',
   isPost: true,
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2026-03-22 11:45:48'
+  postUpdate: '2026-09-04 12:25:42'
 }</script><script>(win=>{
       win.saveToLocal = {
         set: (key, value, ttl) => {
@@ -158,570 +158,570 @@
         }
       }
       detectApple()
-    })(window)</script><link rel="stylesheet" href="/css/font.css"><link rel="stylesheet" href="/css/callout-dark.css"><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">9</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">32</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">4</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url('/2026/02/22/OpenCode-Tutorial/cover.png')"><nav id="nav"><span id="blog-info"><a href="/" title="FrozenYears's Blog"><span class="site-name">FrozenYears's Blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">OpenCode Tutorial</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2026-02-21T16:00:00.000Z" title="Created 2026-02-22 00:00:00">2026-02-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-03-22T03:45:48.240Z" title="Updated 2026-03-22 11:45:48">2026-03-22</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Tutorial/">Tutorial</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">1.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>10mins</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="OpenCode Tutorial"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><div class="note info flat">
+    })(window)</script><link rel="stylesheet" href="/css/font.css"><link rel="stylesheet" href="/css/callout-dark.css"><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">3</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url('/2026/02/22/OpenCode-Tutorial/cover.png')"><nav id="nav"><span id="blog-info"><a href="/" title="FrozenYears's Blog"><span class="site-name">FrozenYears's Blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">OpenCode 使用教程</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2026-02-21T16:00:00.000Z" title="Created 2026-02-22 00:00:00">2026-02-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-09-04T04:25:42.022Z" title="Updated 2026-09-04 12:25:42">2026-09-04</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Tutorial/">Tutorial</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">2.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>9mins</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="OpenCode 使用教程"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><div class="note info flat">
   <i class="fas fa-bullhorn" style="margin-right: 6px;"></i>
-  <strong>Abstract:</strong> A complete guide to OpenCode CLI - installation, local LLM configuration via Ollama, and multi-agent workflow optimization using the Oh-My-OpenCode plugin.
+  <strong>Abstract:</strong> OpenCode CLI 完整指南——安装、通过 Ollama 接入本地大模型、以及用 Oh-My-OpenCode 插件解锁多 Agent 协作。
 </div>
 
 
 
-<h2 id="1-Overview"><a href="#1-Overview" class="headerlink" title="1. Overview"></a>1. Overview</h2><h3 id="1-1-What-is-OpenCode"><a href="#1-1-What-is-OpenCode" class="headerlink" title="1.1 What is OpenCode?"></a>1.1 What is OpenCode?</h3><p>OpenCode is an open-source AI coding agent with OS-level permissions. Unlike web-based LLMs, it can:</p>
+<h2 id="1-概览"><a href="#1-概览" class="headerlink" title="1. 概览"></a>1. 概览</h2><h3 id="1-1-OpenCode-是什么？"><a href="#1-1-OpenCode-是什么？" class="headerlink" title="1.1 OpenCode 是什么？"></a>1.1 OpenCode 是什么？</h3><p>OpenCode 是一个开源的 AI 编程 Agent，拥有操作系统级别的权限。跟网页版 LLM 不一样，它能：</p>
 <ul>
-<li>Read, modify, and create files</li>
-<li>Execute terminal commands</li>
-<li>Search and analyze codebases</li>
-<li><strong>Auto-fix</strong> errors (<strong>closed-loop development</strong>)</li>
+<li>读写、创建文件</li>
+<li>执行终端命令</li>
+<li>搜索和分析整个代码库</li>
+<li><strong>自动修 bug</strong>（<strong>闭环开发</strong>）</li>
 </ul>
-<h3 id="1-2-Core-Features"><a href="#1-2-Core-Features" class="headerlink" title="1.2 Core Features"></a>1.2 Core Features</h3><table>
+<h3 id="1-2-核心特性"><a href="#1-2-核心特性" class="headerlink" title="1.2 核心特性"></a>1.2 核心特性</h3><table>
 <thead>
 <tr>
-<th>Feature</th>
-<th>Description</th>
+<th>特性</th>
+<th>说明</th>
 </tr>
 </thead>
 <tbody><tr>
-<td><strong>Open Source</strong></td>
-<td>GitHub 100k+ Stars, free</td>
+<td><strong>开源</strong></td>
+<td>GitHub 100k+ Stars，免费</td>
 </tr>
 <tr>
-<td><strong>Multi-Model</strong></td>
-<td>75+ providers</td>
+<td><strong>多模型</strong></td>
+<td>支持 75+ 供应商</td>
 </tr>
 <tr>
-<td><strong>Privacy First</strong></td>
-<td>Local models supported</td>
+<td><strong>隐私优先</strong></td>
+<td>支持本地模型</td>
 </tr>
 <tr>
-<td><strong>Terminal UI</strong></td>
-<td>Low resource usage</td>
+<td><strong>终端 UI</strong></td>
+<td>资源占用极低</td>
 </tr>
 <tr>
-<td><strong>Default Agents</strong></td>
+<td><strong>内置 Agent</strong></td>
 <td>Build Mode + Plan Mode</td>
 </tr>
 </tbody></table>
 <hr>
-<h2 id="2-Why-CLI-Command-Line-Interface-over-Web-Chat"><a href="#2-Why-CLI-Command-Line-Interface-over-Web-Chat" class="headerlink" title="2. Why CLI ( Command Line Interface ) over Web Chat"></a>2. Why CLI ( Command Line Interface ) over Web Chat</h2><h3 id="2-1-Core-Differences"><a href="#2-1-Core-Differences" class="headerlink" title="2.1 Core Differences"></a>2.1 Core Differences</h3><table>
+<h2 id="2-为什么选-CLI-而不是网页聊天"><a href="#2-为什么选-CLI-而不是网页聊天" class="headerlink" title="2. 为什么选 CLI 而不是网页聊天"></a>2. 为什么选 CLI 而不是网页聊天</h2><h3 id="2-1-核心区别"><a href="#2-1-核心区别" class="headerlink" title="2.1 核心区别"></a>2.1 核心区别</h3><table>
 <thead>
 <tr>
-<th align="center">Aspect</th>
+<th align="center">维度</th>
 <th align="center"><strong>OpenCode CLI</strong></th>
-<th align="center"><strong>Web LLM</strong></th>
+<th align="center"><strong>网页 LLM</strong></th>
 </tr>
 </thead>
 <tbody><tr>
-<td align="center">Role</td>
-<td align="center">Doer</td>
-<td align="center">Consultant</td>
+<td align="center">角色</td>
+<td align="center">干活的</td>
+<td align="center">出主意的</td>
 </tr>
 <tr>
-<td align="center">Interaction</td>
-<td align="center">Direct file read&#x2F;modify</td>
-<td align="center">Manual copy-paste</td>
+<td align="center">交互方式</td>
+<td align="center">直接读写文件</td>
+<td align="center">手动复制粘贴</td>
 </tr>
 <tr>
-<td align="center">Context</td>
-<td align="center">Full repo awareness</td>
-<td align="center">Single session only</td>
+<td align="center">上下文</td>
+<td align="center">感知整个仓库</td>
+<td align="center">只有单次会话</td>
 </tr>
 <tr>
-<td align="center">Closed-loop</td>
-<td align="center">Auto-fix</td>
-<td align="center">Manual feedback</td>
+<td align="center">闭环</td>
+<td align="center">自动修复</td>
+<td align="center">手动反馈</td>
 </tr>
 <tr>
-<td align="center">Privacy</td>
-<td align="center">Fully local</td>
-<td align="center">Cloud API</td>
+<td align="center">隐私</td>
+<td align="center">完全本地</td>
+<td align="center">云端 API</td>
 </tr>
 </tbody></table>
-<h3 id="2-2-Key-Changes"><a href="#2-2-Key-Changes" class="headerlink" title="2.2 Key Changes"></a>2.2 Key Changes</h3><ol>
-<li><strong>Context Management</strong>: Auto-scan Git repo, build AST&#x2F;Repository Map</li>
-<li><strong>I&#x2F;O Revolution</strong>: Generate Git Diff directly, no copy-paste</li>
-<li><strong>Agentic Loop</strong>: Write → Run → Error → Auto-fix → Success</li>
+<h3 id="2-2-关键变化"><a href="#2-2-关键变化" class="headerlink" title="2.2 关键变化"></a>2.2 关键变化</h3><ol>
+<li><strong>上下文管理</strong>：自动扫描 Git 仓库，构建 AST &#x2F; Repository Map</li>
+<li><strong>I&#x2F;O 革命</strong>：直接生成 Git Diff，告别复制粘贴</li>
+<li><strong>Agentic Loop</strong>：写代码 → 跑 → 报错 → 自动修 → 搞定</li>
 </ol>
-<div class="note info flat"><p>When you want to <strong>ask&#x2F;learn</strong> something, go for free <strong>Web LLM</strong> chatting.</p>
-<p>When you want to <strong>do&#x2F;build</strong> something, choose <strong>CLI Coding Agents</strong> wisely.</p>
+<div class="note info flat"><p>想<strong>问&#x2F;学</strong>东西？去用免费的<strong>网页 LLM</strong> 聊。</p>
+<p>想<strong>做&#x2F;建</strong>东西？上 <strong>CLI Coding Agent</strong>，效率拉满。</p>
 </div>
 
 <hr>
-<h2 id="3-Installation"><a href="#3-Installation" class="headerlink" title="3. Installation"></a>3. Installation</h2><div class="note info flat"><p><strong>UPDATE:</strong> OpenCode Desktop is now highly recommended.</p>
-<p>Download it from the official website: <a target="_blank" rel="noopener" href="https://opencode.ai/download">OpenCode Desktop</a></p>
-<img src="/2026/02/22/OpenCode-Tutorial/1.png" class="" title="OpenCode Desktop Interface">
+<h2 id="3-安装"><a href="#3-安装" class="headerlink" title="3. 安装"></a>3. 安装</h2><div class="note info flat"><p><strong>更新：</strong> 现在强烈推荐 OpenCode Desktop。</p>
+<p>官网直接下载：<a target="_blank" rel="noopener" href="https://opencode.ai/download">OpenCode Desktop</a></p>
+<img src="/2026/02/22/OpenCode-Tutorial/1.png" class="" title="OpenCode Desktop 界面">
 
-<img src="/2026/02/22/OpenCode-Tutorial/2.png" class="" title="OpenCode Desktop Feature">
+<img src="/2026/02/22/OpenCode-Tutorial/2.png" class="" title="OpenCode Desktop 功能">
 
-<p>OpenCode Desktop provides a more intuitive experience, allowing you to order in the session and view changes simultaneously. Its user-friendly interface makes your development faster and more efficient.</p>
+<p>OpenCode Desktop 体验更直观，可以在会话里下指令的同时实时看到代码变更。界面友好，开发效率直接起飞。</p>
 </div>
 
-<h3 id="3-1-CLI-Quick-Install"><a href="#3-1-CLI-Quick-Install" class="headerlink" title="3.1 CLI Quick Install"></a>3.1 CLI Quick Install</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Linux/macOS</span></span><br><span class="line">curl -fsSL https://opencode.ai/install | bash</span><br><span class="line"></span><br><span class="line"><span class="comment"># macOS</span></span><br><span class="line">brew install opencode</span><br><span class="line"></span><br><span class="line"><span class="comment"># Windows (Chocolatey)</span></span><br><span class="line">choco install opencode</span><br><span class="line"></span><br><span class="line"><span class="comment"># Windows (Scoop)</span></span><br><span class="line">scoop install opencode</span><br><span class="line"></span><br><span class="line"><span class="comment"># Node.js</span></span><br><span class="line">npm install -g opencode-ai</span><br><span class="line"></span><br><span class="line"><span class="comment"># Docker</span></span><br><span class="line">docker run -it --<span class="built_in">rm</span> ghcr.io/anomalyco/opencode</span><br></pre></td></tr></table></figure>
+<h3 id="3-1-CLI-快速安装"><a href="#3-1-CLI-快速安装" class="headerlink" title="3.1 CLI 快速安装"></a>3.1 CLI 快速安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Linux/macOS</span></span><br><span class="line">curl -fsSL https://opencode.ai/install | bash</span><br><span class="line"></span><br><span class="line"><span class="comment"># macOS</span></span><br><span class="line">brew install opencode</span><br><span class="line"></span><br><span class="line"><span class="comment"># Windows (Chocolatey)</span></span><br><span class="line">choco install opencode</span><br><span class="line"></span><br><span class="line"><span class="comment"># Windows (Scoop)</span></span><br><span class="line">scoop install opencode</span><br><span class="line"></span><br><span class="line"><span class="comment"># Node.js</span></span><br><span class="line">npm install -g opencode-ai</span><br><span class="line"></span><br><span class="line"><span class="comment"># Docker</span></span><br><span class="line">docker run -it --<span class="built_in">rm</span> ghcr.io/anomalyco/opencode</span><br></pre></td></tr></table></figure>
 
-<h3 id="3-2-Verify-Installation"><a href="#3-2-Verify-Installation" class="headerlink" title="3.2 Verify Installation"></a>3.2 Verify Installation</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">opencode --version</span><br></pre></td></tr></table></figure>
+<h3 id="3-2-验证安装"><a href="#3-2-验证安装" class="headerlink" title="3.2 验证安装"></a>3.2 验证安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">opencode --version</span><br></pre></td></tr></table></figure>
 
-<h3 id="3-3-First-Launch"><a href="#3-3-First-Launch" class="headerlink" title="3.3 First Launch"></a>3.3 First Launch</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /path/to/your/project</span><br><span class="line">opencode</span><br><span class="line">/init</span><br></pre></td></tr></table></figure>
+<h3 id="3-3-首次启动"><a href="#3-3-首次启动" class="headerlink" title="3.3 首次启动"></a>3.3 首次启动</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /path/to/your/project</span><br><span class="line">opencode</span><br><span class="line">/init</span><br></pre></td></tr></table></figure>
 
-<div class="note info flat"><p><code>/init</code> scans your code structure and generates <code>AGENTS.md</code> for better context understanding.</p>
+<div class="note info flat"><p><code>/init</code> 会扫描你的代码结构，生成 <code>AGENTS.md</code>，让 AI 更好地理解项目上下文。</p>
 </div>
 <hr>
-<h2 id="4-Commands-Models"><a href="#4-Commands-Models" class="headerlink" title="4. Commands &amp; Models"></a>4. Commands &amp; Models</h2><h3 id="4-1-Slash-Commands"><a href="#4-1-Slash-Commands" class="headerlink" title="4.1 Slash Commands"></a>4.1 Slash Commands</h3><table>
+<h2 id="4-命令与模型"><a href="#4-命令与模型" class="headerlink" title="4. 命令与模型"></a>4. 命令与模型</h2><h3 id="4-1-斜杠命令"><a href="#4-1-斜杠命令" class="headerlink" title="4.1 斜杠命令"></a>4.1 斜杠命令</h3><table>
 <thead>
 <tr>
-<th>Command</th>
-<th>Function</th>
-<th>Shortcut</th>
+<th>命令</th>
+<th>功能</th>
+<th>快捷键</th>
 </tr>
 </thead>
 <tbody><tr>
 <td><code>/init</code></td>
-<td>Initialize project</td>
+<td>初始化项目</td>
 <td><code>Ctrl+X I</code></td>
 </tr>
 <tr>
 <td><code>/models</code></td>
-<td>List&#x2F;switch models</td>
+<td>列出&#x2F;切换模型</td>
 <td><code>Ctrl+X M</code></td>
 </tr>
 <tr>
 <td><code>/connect</code></td>
-<td>Configure LLM provider</td>
+<td>配置 LLM 供应商</td>
 <td>-</td>
 </tr>
 <tr>
 <td><code>/undo</code></td>
-<td>Undo last action</td>
+<td>撤销上一步</td>
 <td><code>Ctrl+X U</code></td>
 </tr>
 <tr>
 <td><code>/redo</code></td>
-<td>Redo action</td>
+<td>重做</td>
 <td><code>Ctrl+X R</code></td>
 </tr>
 <tr>
 <td><code>/share</code></td>
-<td>Share session</td>
+<td>分享会话</td>
 <td><code>Ctrl+X S</code></td>
 </tr>
 <tr>
 <td><code>/new</code></td>
-<td>New session</td>
+<td>新建会话</td>
 <td><code>Ctrl+X N</code></td>
 </tr>
 <tr>
 <td><code>/sessions</code></td>
-<td>List sessions</td>
+<td>列出会话</td>
 <td><code>Ctrl+X L</code></td>
 </tr>
 <tr>
 <td><code>/compact</code></td>
-<td>Compact session</td>
+<td>压缩会话</td>
 <td><code>Ctrl+X C</code></td>
 </tr>
 <tr>
 <td><code>/exit</code></td>
-<td>Exit</td>
+<td>退出</td>
 <td><code>Ctrl+X Q</code></td>
 </tr>
 </tbody></table>
-<h3 id="4-2-Free-Models"><a href="#4-2-Free-Models" class="headerlink" title="4.2 Free Models"></a>4.2 Free Models</h3><table>
+<h3 id="4-2-免费模型"><a href="#4-2-免费模型" class="headerlink" title="4.2 免费模型"></a>4.2 免费模型</h3><table>
 <thead>
 <tr>
-<th>Model</th>
-<th>Use Case</th>
+<th>模型</th>
+<th>适用场景</th>
 </tr>
 </thead>
 <tbody><tr>
 <td><strong>Minimax M2.5 Free</strong></td>
-<td>General tasks</td>
+<td>通用任务</td>
 </tr>
 <tr>
 <td><strong>Trinity Large Preview</strong></td>
-<td>Fast response</td>
+<td>快速响应</td>
 </tr>
 <tr>
 <td><strong>Big Pickle</strong></td>
-<td>Code generation</td>
+<td>代码生成</td>
 </tr>
 </tbody></table>
-<h3 id="4-3-Other-Commands-of-OpenCode"><a href="#4-3-Other-Commands-of-OpenCode" class="headerlink" title="4.3 Other Commands of OpenCode"></a>4.3 Other Commands of OpenCode</h3><table>
+<h3 id="4-3-OpenCode-其他命令"><a href="#4-3-OpenCode-其他命令" class="headerlink" title="4.3 OpenCode 其他命令"></a>4.3 OpenCode 其他命令</h3><table>
 <thead>
 <tr>
-<th>Command</th>
-<th>Function</th>
+<th>命令</th>
+<th>功能</th>
 </tr>
 </thead>
 <tbody><tr>
 <td><code>opencode models</code></td>
-<td>List all the models in terminal</td>
+<td>在终端列出所有模型</td>
 </tr>
 <tr>
 <td><code>opencode auth login</code></td>
-<td>Connect your provider</td>
+<td>连接供应商</td>
 </tr>
 <tr>
 <td><code>opencode auth logout</code></td>
-<td>Clear your provider</td>
+<td>清除供应商凭证</td>
 </tr>
 </tbody></table>
-<h3 id="4-4-Default-Agents"><a href="#4-4-Default-Agents" class="headerlink" title="4.4 Default Agents"></a>4.4 Default Agents</h3><table>
+<h3 id="4-4-默认-Agent"><a href="#4-4-默认-Agent" class="headerlink" title="4.4 默认 Agent"></a>4.4 默认 Agent</h3><table>
 <thead>
 <tr>
-<th>Mode</th>
-<th>Description</th>
+<th>模式</th>
+<th>说明</th>
 </tr>
 </thead>
 <tbody><tr>
 <td><strong>Build</strong></td>
-<td>Full permissions, default</td>
+<td>全权限，默认模式</td>
 </tr>
 <tr>
 <td><strong>Plan</strong></td>
-<td>Read-only, press <code>Tab</code> to switch</td>
+<td>只读模式，按 <code>Tab</code> 切换</td>
 </tr>
 </tbody></table>
 <hr>
-<h2 id="5-Configuration"><a href="#5-Configuration" class="headerlink" title="5. Configuration"></a>5. Configuration</h2><h3 id="5-1-Config-Location"><a href="#5-1-Config-Location" class="headerlink" title="5.1 Config Location"></a>5.1 Config Location</h3><ul>
+<h2 id="5-配置"><a href="#5-配置" class="headerlink" title="5. 配置"></a>5. 配置</h2><h3 id="5-1-配置文件位置"><a href="#5-1-配置文件位置" class="headerlink" title="5.1 配置文件位置"></a>5.1 配置文件位置</h3><ul>
 <li><strong>Windows</strong>: <code>%USERPROFILE%\.config\opencode\opencode.json</code></li>
 <li><strong>macOS&#x2F;Linux</strong>: <code>~/.config/opencode/opencode.json</code></li>
 </ul>
-<h3 id="5-2-Basic-Config"><a href="#5-2-Basic-Config" class="headerlink" title="5.2 Basic Config"></a>5.2 Basic Config</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;$schema&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://opencode.ai/config.json&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="comment">// Theme configuration</span></span><br><span class="line">  <span class="attr">&quot;theme&quot;</span><span class="punctuation">:</span> <span class="string">&quot;opencode&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;model&quot;</span><span class="punctuation">:</span> <span class="string">&quot;anthropic/claude-sonnet-4-5&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;autoupdate&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="5-2-基础配置"><a href="#5-2-基础配置" class="headerlink" title="5.2 基础配置"></a>5.2 基础配置</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;$schema&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://opencode.ai/config.json&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="comment">// 主题配置</span></span><br><span class="line">  <span class="attr">&quot;theme&quot;</span><span class="punctuation">:</span> <span class="string">&quot;opencode&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;model&quot;</span><span class="punctuation">:</span> <span class="string">&quot;anthropic/claude-sonnet-4-5&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;autoupdate&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="5-3-Multi-Model-Config"><a href="#5-3-Multi-Model-Config" class="headerlink" title="5.3 Multi-Model Config"></a>5.3 Multi-Model Config</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;$schema&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://opencode.ai/config.json&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;theme&quot;</span><span class="punctuation">:</span> <span class="string">&quot;opencode&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;provider&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;default&quot;</span><span class="punctuation">:</span> <span class="string">&quot;glm-5-free&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;github&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;github_copilot&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;enabled&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;ollama&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;npm&quot;</span><span class="punctuation">:</span> <span class="string">&quot;@ai-sdk/openai-compatible&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Ollama Local&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;options&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;baseURL&quot;</span><span class="punctuation">:</span> <span class="string">&quot;http://localhost:11434/v1&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;models&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;qwen3:8b&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">          <span class="attr">&quot;_launch&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Qwen3:8b&quot;</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="5-3-多模型配置"><a href="#5-3-多模型配置" class="headerlink" title="5.3 多模型配置"></a>5.3 多模型配置</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;$schema&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://opencode.ai/config.json&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;theme&quot;</span><span class="punctuation">:</span> <span class="string">&quot;opencode&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;provider&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;default&quot;</span><span class="punctuation">:</span> <span class="string">&quot;glm-5-free&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;github&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;github_copilot&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;enabled&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;ollama&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;npm&quot;</span><span class="punctuation">:</span> <span class="string">&quot;@ai-sdk/openai-compatible&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Ollama Local&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;options&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;baseURL&quot;</span><span class="punctuation">:</span> <span class="string">&quot;http://localhost:11434/v1&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;models&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;qwen3:8b&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">          <span class="attr">&quot;_launch&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Qwen3:8b&quot;</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="5-4-Local-Ollama-Setup-Configure-A-Local-LLM"><a href="#5-4-Local-Ollama-Setup-Configure-A-Local-LLM" class="headerlink" title="*5.4 Local Ollama Setup (Configure A Local LLM)"></a>*5.4 Local Ollama Setup (Configure A Local LLM)</h3><div class="note warning flat"><p><strong>UPDATE:</strong><br>After deeper research, I find that local models (for PC) perform poorly when the context rapidly grows. If the input context is a little bit larger, the reasoning time of the output doubles.<br>In a word, you <strong>better not</strong> use local models in OpenCode with oh-my-opencode, unless for privacy.</p>
+<h3 id="5-4-本地-Ollama-配置（接入本地大模型）"><a href="#5-4-本地-Ollama-配置（接入本地大模型）" class="headerlink" title="*5.4 本地 Ollama 配置（接入本地大模型）"></a>*5.4 本地 Ollama 配置（接入本地大模型）</h3><div class="note warning flat"><p><strong>更新：</strong><br>深入研究后发现，本地模型（PC 端）在上下文快速增长时表现很拉。输入的上下文稍微大一点，推理时间直接翻倍。<br>一句话总结：除非是为了隐私，<strong>别在 OpenCode + Oh-My-OpenCode 里用本地模型</strong>。</p>
 </div>
 
-<h4 id="Step-0-Configure-Environment-Variables"><a href="#Step-0-Configure-Environment-Variables" class="headerlink" title="Step 0: Configure Environment Variables"></a>Step 0: Configure Environment Variables</h4><blockquote>
-<p>( if you don’t want the large models to be installed on your C drive )</p>
+<h4 id="Step-0-配置环境变量"><a href="#Step-0-配置环境变量" class="headerlink" title="Step 0: 配置环境变量"></a>Step 0: 配置环境变量</h4><blockquote>
+<p>（如果你不想让大模型装到 C 盘的话）</p>
 </blockquote>
 <ul>
-<li>Open the <strong>Environment Variables</strong></li>
-<li>Create a new <strong>system variable</strong></li>
-<li>The <strong>variable name</strong> is <code>OLLAMA_MODELS</code></li>
-<li>The <strong>variable value</strong> is the directory where models should be, like <code>D:\OllamaModels</code></li>
+<li>打开<strong>环境变量</strong>设置</li>
+<li>新建一个<strong>系统变量</strong></li>
+<li><strong>变量名</strong>填 <code>OLLAMA_MODELS</code></li>
+<li><strong>变量值</strong>填你想放模型的目录，比如 <code>D:\OllamaModels</code></li>
 </ul>
-<h4 id="Step-1-Install-Ollama"><a href="#Step-1-Install-Ollama" class="headerlink" title="Step 1: Install Ollama"></a>Step 1: Install Ollama</h4><p>Visit <a target="_blank" rel="noopener" href="https://ollama.com/">https://ollama.com</a> to download</p>
-<h4 id="Step-2-Pull-Models"><a href="#Step-2-Pull-Models" class="headerlink" title="Step 2: Pull Models"></a>Step 2: Pull Models</h4><blockquote>
-<p>Choose the model on your own, and depend on your hardware.</p>
+<h4 id="Step-1-安装-Ollama"><a href="#Step-1-安装-Ollama" class="headerlink" title="Step 1: 安装 Ollama"></a>Step 1: 安装 Ollama</h4><p>去 <a target="_blank" rel="noopener" href="https://ollama.com/">https://ollama.com</a> 下载</p>
+<h4 id="Step-2-拉取模型"><a href="#Step-2-拉取模型" class="headerlink" title="Step 2: 拉取模型"></a>Step 2: 拉取模型</h4><blockquote>
+<p>模型自己选，看你的硬件配置。</p>
 </blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># I recommend this model for 32G Memory and RTX 5060 Laptop or higher</span></span><br><span class="line">ollama run qwen3:8b</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 32G 内存 + RTX 5060 笔记本或以上配置推荐这个</span></span><br><span class="line">ollama run qwen3:8b</span><br></pre></td></tr></table></figure>
 
-<h4 id="Step-3-Configure-OpenCode"><a href="#Step-3-Configure-OpenCode" class="headerlink" title="Step 3: Configure OpenCode"></a>Step 3: Configure OpenCode</h4><p>Just run <code>ollama launch opencode</code> in terminal.</p>
-<p>Or config it yourself at <code>%USERPROFILE%\.config\opencode\opencode.json</code> like this:</p>
+<h4 id="Step-3-配置-OpenCode"><a href="#Step-3-配置-OpenCode" class="headerlink" title="Step 3: 配置 OpenCode"></a>Step 3: 配置 OpenCode</h4><p>终端直接跑 <code>ollama launch opencode</code>。</p>
+<p>或者自己手动改 <code>%USERPROFILE%\.config\opencode\opencode.json</code>：</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;provider&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;ollama&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;npm&quot;</span><span class="punctuation">:</span> <span class="string">&quot;@ai-sdk/openai-compatible&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Ollama Local&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;options&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;baseURL&quot;</span><span class="punctuation">:</span> <span class="string">&quot;http://localhost:11434/v1&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;models&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;qwen3:8b&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">          <span class="attr">&quot;_launch&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Qwen3:8b&quot;</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
 
-<div class="note warning flat"><p>Ollama baseURL <strong>must</strong> include <code>/v1</code> suffix.</p>
+<div class="note warning flat"><p>Ollama baseURL <strong>必须</strong>带 <code>/v1</code> 后缀。</p>
 </div>
 
-<h3 id="5-5-Third-Party-API-Proxy"><a href="#5-5-Third-Party-API-Proxy" class="headerlink" title="5.5 Third-Party API Proxy"></a>5.5 Third-Party API Proxy</h3><p>Any OpenAI-compatible proxy works. </p>
-<p>First, configure in <code>opencode.json</code>:</p>
+<h3 id="5-5-第三方-API-代理"><a href="#5-5-第三方-API-代理" class="headerlink" title="5.5 第三方 API 代理"></a>5.5 第三方 API 代理</h3><p>任何兼容 OpenAI 的代理都能用。</p>
+<p>先在 <code>opencode.json</code> 里配置：</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;$schema&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://opencode.ai/config.json&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;provider&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;my-proxy&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;npm&quot;</span><span class="punctuation">:</span> <span class="string">&quot;@ai-sdk/openai-compatible&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;My Proxy&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;options&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;baseURL&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://your-proxy.com/v1&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;models&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;claude-sonnet-4-5&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">          <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Claude Sonnet 4.5&quot;</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
 
-<p>Second, run <code>opencode auth login</code> to authenticate:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">opencode auth login</span><br><span class="line"><span class="comment"># Select provider → Others </span></span><br><span class="line"><span class="comment"># Enter the name of provider in opencode.json like [my-proxy]</span></span><br><span class="line"><span class="comment"># Enter API key</span></span><br></pre></td></tr></table></figure>
+<p>然后跑 <code>opencode auth login</code> 认证：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">opencode auth login</span><br><span class="line"><span class="comment"># 选择供应商 → Others </span></span><br><span class="line"><span class="comment"># 输入 opencode.json 里的供应商名称，比如 [my-proxy]</span></span><br><span class="line"><span class="comment"># 输入 API key</span></span><br></pre></td></tr></table></figure>
 
-<div class="note info flat"><p>API keys are stored in <code>~/.local/share/opencode/auth.json</code> when added via <code>/connect</code>.</p>
+<div class="note info flat"><p>通过 <code>/connect</code> 添加的 API key 会存储在 <code>~/.local/share/opencode/auth.json</code> 里。</p>
 </div>
 
-<h3 id="5-6-Recommended-API-Sources"><a href="#5-6-Recommended-API-Sources" class="headerlink" title="5.6 Recommended API Sources"></a>5.6 Recommended API Sources</h3><table>
+<h3 id="5-6-推荐-API-来源"><a href="#5-6-推荐-API-来源" class="headerlink" title="5.6 推荐 API 来源"></a>5.6 推荐 API 来源</h3><table>
 <thead>
 <tr>
-<th>Source</th>
-<th>Free Tier</th>
-<th>Notes</th>
+<th>来源</th>
+<th>免费额度</th>
+<th>备注</th>
 </tr>
 </thead>
 <tbody><tr>
 <td><strong>GitHub Copilot</strong></td>
-<td>Free for students (<a target="_blank" rel="noopener" href="https://github.com/settings/education/benefits">Education Pack</a>)</td>
-<td>OAuth login via <code>/connect</code> → GitHub Copilot; supports Claude Opus 4.5, GPT-5.2, etc.</td>
+<td>学生免费（<a target="_blank" rel="noopener" href="https://github.com/settings/education/benefits">Education Pack</a>）</td>
+<td>通过 <code>/connect</code> → GitHub Copilot 用 OAuth 登录；支持 Claude Opus 4.5、GPT-5.2 等</td>
 </tr>
 <tr>
 <td><strong>ModelScope</strong></td>
-<td>2000 calls&#x2F;day</td>
-<td>Get token at <a target="_blank" rel="noopener" href="https://modelscope.cn/my/myaccesstoken">modelscope.cn</a>; <code>baseURL</code>: <code>https://api.modelscope.cn/v1</code></td>
+<td>每天 2000 次调用</td>
+<td>在 <a target="_blank" rel="noopener" href="https://modelscope.cn/my/myaccesstoken">modelscope.cn</a> 获取 token；<code>baseURL</code>: <code>https://api.modelscope.cn/v1</code></td>
 </tr>
 <tr>
-<td><strong>VoAPI (Public)</strong></td>
-<td>Free quota by daily check-in</td>
-<td>Register at <a target="_blank" rel="noopener" href="https://demo.voapi.top/">demo.voapi.top</a>; <code>baseURL</code>: <code>https://demo.voapi.top/v1</code>; supports basic models</td>
+<td><strong>VoAPI (公共)</strong></td>
+<td>每日签到送额度</td>
+<td>在 <a target="_blank" rel="noopener" href="https://demo.voapi.top/">demo.voapi.top</a> 注册；<code>baseURL</code>: <code>https://demo.voapi.top/v1</code>；支持基础模型</td>
 </tr>
 </tbody></table>
 <hr>
-<h2 id="6-Oh-My-OpenCode-Plugin"><a href="#6-Oh-My-OpenCode-Plugin" class="headerlink" title="6. Oh My OpenCode Plugin"></a>6. Oh My OpenCode Plugin</h2><div class="note warning flat"><p>Without <strong>Oh My OpenCode</strong>, OpenCode only operates at <strong>30% capacity</strong>.</p>
+<h2 id="6-Oh-My-OpenCode-插件"><a href="#6-Oh-My-OpenCode-插件" class="headerlink" title="6. Oh My OpenCode 插件"></a>6. Oh My OpenCode 插件</h2><div class="note warning flat"><p>不装 <strong>Oh My OpenCode</strong>，OpenCode 只发挥了 <strong>30% 的功力</strong>。</p>
 </div>
 
-<h3 id="6-1-What-is-Oh-My-OpenCode"><a href="#6-1-What-is-Oh-My-OpenCode" class="headerlink" title="6.1 What is Oh My OpenCode?"></a>6.1 What is Oh My OpenCode?</h3><p>Plugin that upgrades single agent to <strong>multi-agent collaboration team</strong>.</p>
+<h3 id="6-1-Oh-My-OpenCode-是什么？"><a href="#6-1-Oh-My-OpenCode-是什么？" class="headerlink" title="6.1 Oh My OpenCode 是什么？"></a>6.1 Oh My OpenCode 是什么？</h3><p>一个插件，把单 Agent 升级成<strong>多 Agent 协作团队</strong>。</p>
 <p>GitHub: <a target="_blank" rel="noopener" href="https://github.com/code-yeongyu/oh-my-opencode">code-yeongyu&#x2F;oh-my-opencode</a></p>
-<h3 id="6-2-Core-Agents"><a href="#6-2-Core-Agents" class="headerlink" title="6.2 Core Agents"></a>6.2 Core Agents</h3><table>
+<h3 id="6-2-核心-Agent"><a href="#6-2-核心-Agent" class="headerlink" title="6.2 核心 Agent"></a>6.2 核心 Agent</h3><table>
 <thead>
 <tr>
 <th>Agent</th>
-<th>Role</th>
+<th>职责</th>
 </tr>
 </thead>
 <tbody><tr>
 <td><strong>Sisyphus (Ultraworker)</strong></td>
-<td>Main orchestrator, delegates to specialized agents, drives parallel execution until 100% completion.</td>
+<td>总指挥，分配任务给专业 Agent，并行推进直到 100% 完成</td>
 </tr>
 <tr>
 <td><strong>Hephaestus (Deep Agent)</strong></td>
-<td>Deep research, hard logic-heavy tasks, thorough analysis</td>
+<td>深度研究，硬核逻辑任务，深入分析</td>
 </tr>
 <tr>
 <td><strong>Prometheus (Plan Builder)</strong></td>
-<td>Codebase navigation, exploration, pattern discovery</td>
+<td>代码库导航、探索、发现模式</td>
 </tr>
 <tr>
 <td><strong>Atlas (Plan Executor)</strong></td>
-<td>Implements pre-defined multi-step plans</td>
+<td>执行预定义的多步骤计划</td>
 </tr>
 </tbody></table>
-<h3 id="6-3-ULW-Trigger"><a href="#6-3-ULW-Trigger" class="headerlink" title="6.3 ULW Trigger"></a>6.3 ULW Trigger</h3><p>Add <code>ultrawork</code> or <code>ulw</code> to prompt:</p>
+<h3 id="6-3-ULW-触发"><a href="#6-3-ULW-触发" class="headerlink" title="6.3 ULW 触发"></a>6.3 ULW 触发</h3><p>在 prompt 里加 <code>ultrawork</code> 或 <code>ulw</code>：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ultrawork: Implement a React component with dark mode.</span><br></pre></td></tr></table></figure>
 
-<p><strong>Effect</strong>:</p>
+<p><strong>效果</strong>：</p>
 <ul>
-<li>Sisyphus takes over</li>
-<li>Auto-assign sub-tasks to specialized agents</li>
-<li>Parallel execution</li>
-<li>100% completion before stopping</li>
+<li>Sisyphus 接管</li>
+<li>自动把子任务分配给专业 Agent</li>
+<li>并行执行</li>
+<li>不到 100% 不收工</li>
 </ul>
-<h3 id="6-4-Multi-Agent-vs-Single-Agent"><a href="#6-4-Multi-Agent-vs-Single-Agent" class="headerlink" title="6.4 Multi-Agent vs Single-Agent"></a>6.4 Multi-Agent vs Single-Agent</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Single-Agent:</span><br><span class="line">User → One AI → All tasks (serial)</span><br><span class="line"></span><br><span class="line">Multi-Agent:</span><br><span class="line">User → Sisyphus → Parallel dispatch</span><br><span class="line">  ├─→ Hephaestus (deep analysis)</span><br><span class="line">  ├─→ Prometheus (planing)</span><br><span class="line">  └─→ Atlas (execution)</span><br></pre></td></tr></table></figure>
+<h3 id="6-4-多-Agent-vs-单-Agent"><a href="#6-4-多-Agent-vs-单-Agent" class="headerlink" title="6.4 多 Agent vs 单 Agent"></a>6.4 多 Agent vs 单 Agent</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">单 Agent：</span><br><span class="line">User → 一个 AI → 所有任务（串行）</span><br><span class="line"></span><br><span class="line">多 Agent：</span><br><span class="line">User → Sisyphus → 并行分发</span><br><span class="line">  ├─→ Hephaestus（深度分析）</span><br><span class="line">  ├─→ Prometheus（规划）</span><br><span class="line">  └─→ Atlas（执行）</span><br></pre></td></tr></table></figure>
 
-<div class="note info flat"><p><strong>Token Warning</strong>: Multi-agent mode significantly increases token usage.</p>
+<div class="note info flat"><p><strong>Token 警告</strong>：多 Agent 模式会显著增加 token 消耗。</p>
 </div>
 
-<h3 id="6-5-Install-Oh-My-OpenCode"><a href="#6-5-Install-Oh-My-OpenCode" class="headerlink" title="6.5 Install Oh My OpenCode"></a>6.5 Install Oh My OpenCode</h3><p>Paste into OpenCode:</p>
+<h3 id="6-5-安装-Oh-My-OpenCode"><a href="#6-5-安装-Oh-My-OpenCode" class="headerlink" title="6.5 安装 Oh My OpenCode"></a>6.5 安装 Oh My OpenCode</h3><p>在 OpenCode 里粘贴这段：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Follow the installation guide:</span><br><span class="line">https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/refs/heads/master/docs/guide/installation.md</span><br></pre></td></tr></table></figure>
 
-<h3 id="6-6-Additional-Features"><a href="#6-6-Additional-Features" class="headerlink" title="6.6 Additional Features"></a>6.6 Additional Features</h3><table>
+<h3 id="6-6-附加功能"><a href="#6-6-附加功能" class="headerlink" title="6.6 附加功能"></a>6.6 附加功能</h3><table>
 <thead>
 <tr>
-<th>Feature</th>
-<th>Description</th>
+<th>功能</th>
+<th>说明</th>
 </tr>
 </thead>
 <tbody><tr>
 <td><strong>20+ Hooks</strong></td>
-<td>Workflow automation</td>
+<td>工作流自动化</td>
 </tr>
 <tr>
-<td><strong>MCP Integration</strong></td>
-<td>Context7, grep.app</td>
+<td><strong>MCP 集成</strong></td>
+<td>Context7、grep.app</td>
 </tr>
 <tr>
-<td><strong>LSP Support</strong></td>
-<td>Refactoring, navigation</td>
+<td><strong>LSP 支持</strong></td>
+<td>重构、导航</td>
 </tr>
 <tr>
-<td><strong>Multi-Model</strong></td>
-<td>Auto task allocation</td>
+<td><strong>多模型</strong></td>
+<td>自动分配任务</td>
 </tr>
 </tbody></table>
-<h3 id="6-7-Model-Configuration"><a href="#6-7-Model-Configuration" class="headerlink" title="*6.7 Model Configuration"></a>*6.7 Model Configuration</h3><div class="note info flat"><p>Customize agents and categories in <code>%USERPROFILE%\.config\opencode\oh-my-opencode.json</code>.</p>
+<h3 id="6-7-模型配置"><a href="#6-7-模型配置" class="headerlink" title="*6.7 模型配置"></a>*6.7 模型配置</h3><div class="note info flat"><p>在 <code>%USERPROFILE%\.config\opencode\oh-my-opencode.json</code> 里自定义 Agent 和分类。</p>
 </div>
 
 <table>
 <thead>
 <tr>
 <th>Agent</th>
-<th>Role</th>
-<th>Recommended Model</th>
+<th>职责</th>
+<th>推荐模型</th>
 </tr>
 </thead>
 <tbody><tr>
 <td><strong>Sisyphus</strong></td>
-<td>Main orchestrator, task delegation</td>
-<td><strong>General-purpose models</strong> with <strong>strongest comprehensive capabilities</strong> and <strong>largest context windows</strong></td>
+<td>总指挥，任务分配</td>
+<td><strong>综合能力最强</strong>、<strong>上下文窗口最大</strong>的通用模型</td>
 </tr>
 <tr>
 <td><strong>Hephaestus</strong></td>
-<td>Deep execution, complex bug fixing</td>
-<td>Models with <strong>extremely strong code generation</strong> and <strong>logic capabilities</strong>; <strong>free unlimited models</strong> recommended to prevent <strong>rate limits</strong></td>
+<td>深度执行，复杂 bug 修复</td>
+<td><strong>代码生成和逻辑能力极强</strong>的模型；推荐<strong>免费无限量模型</strong>防止 rate limit</td>
 </tr>
 <tr>
 <td><strong>Oracle</strong></td>
-<td>Architecture design, debugging</td>
-<td><strong>Top-tier reasoning models</strong> with <strong>strong Chain-of-Thinking (CoT)</strong></td>
+<td>架构设计，调试</td>
+<td><strong>顶级推理模型</strong>，<strong>强 Chain-of-Thinking (CoT)</strong></td>
 </tr>
 <tr>
 <td><strong>Librarian</strong></td>
-<td>Documentation, code research</td>
-<td>Models with <strong>ultra-long context</strong> understanding and <strong>extremely low cost</strong></td>
+<td>文档，代码调研</td>
+<td><strong>超长上下文</strong>理解、<strong>极低成本</strong>的模型</td>
 </tr>
 <tr>
 <td><strong>Explore</strong></td>
-<td>Fast code search</td>
-<td><strong>Low-latency models</strong>; local <strong>small-parameter</strong> <strong>high-frequency models</strong> recommended for <strong>zero-cost fast concurrency</strong></td>
+<td>快速代码搜索</td>
+<td><strong>低延迟模型</strong>；推荐本地<strong>小参数高频</strong>模型，<strong>零成本快速并发</strong></td>
 </tr>
 <tr>
 <td><strong>Multimodal-Looker</strong></td>
-<td>Vision analysis (screenshots, PDFs)</td>
-<td>Native <strong>multimodal models</strong> with <strong>powerful Vision capabilities</strong></td>
+<td>视觉分析（截图、PDF）</td>
+<td>原生<strong>多模态模型</strong>，<strong>强 Vision 能力</strong></td>
 </tr>
 <tr>
 <td><strong>Prometheus</strong></td>
-<td>Task planning</td>
-<td>Models with <strong>strong logical reasoning</strong> capabilities</td>
+<td>任务规划</td>
+<td><strong>逻辑推理能力强</strong>的模型</td>
 </tr>
 <tr>
 <td><strong>Metis</strong></td>
-<td>Plan consulting</td>
-<td>Models with <strong>strong logical reasoning</strong> and <strong>critical analysis</strong></td>
+<td>方案咨询</td>
+<td><strong>逻辑推理和批判性分析强</strong>的模型</td>
 </tr>
 <tr>
 <td><strong>Momus</strong></td>
-<td>Code review</td>
-<td>Models with <strong>strong instruction following</strong> and <strong>critical thinking</strong></td>
+<td>代码审查</td>
+<td><strong>指令遵循和批判性思维强</strong>的模型</td>
 </tr>
 <tr>
 <td><strong>Atlas</strong></td>
-<td>Plan execution</td>
-<td>Models with <strong>strong instruction following</strong> and <strong>fast response</strong></td>
+<td>方案执行</td>
+<td><strong>指令遵循强、响应快</strong>的模型</td>
 </tr>
 </tbody></table>
 <hr>
 <table>
 <thead>
 <tr>
-<th>Category</th>
-<th>Use Case</th>
-<th>Recommended Model</th>
+<th>分类</th>
+<th>适用场景</th>
+<th>推荐模型</th>
 </tr>
 </thead>
 <tbody><tr>
 <td><strong>visual-engineering</strong></td>
-<td>Frontend, UI implementation</td>
-<td>Models with <strong>strong Vision capabilities</strong> and <strong>frontend expertise</strong></td>
+<td>前端、UI 实现</td>
+<td><strong>Vision 能力强、前端专精</strong>的模型</td>
 </tr>
 <tr>
 <td><strong>ultrabrain</strong></td>
-<td>Heavy logic, algorithm rewrite</td>
-<td><strong>Top-tier reasoning models</strong> with <strong>extreme computational power</strong></td>
+<td>硬核逻辑、算法重写</td>
+<td><strong>顶级推理模型</strong>，<strong>极致算力</strong></td>
 </tr>
 <tr>
 <td><strong>deep</strong></td>
-<td>Deep code implementation</td>
-<td>Models with <strong>strong logical reasoning</strong> capabilities</td>
+<td>深度代码实现</td>
+<td><strong>逻辑推理能力强</strong>的模型</td>
 </tr>
 <tr>
 <td><strong>artistry</strong></td>
-<td>Creative code design</td>
-<td>Models combining <strong>creativity</strong> and <strong>reasoning</strong></td>
+<td>创意代码设计</td>
+<td><strong>创造力 + 推理</strong>兼具的模型</td>
 </tr>
 <tr>
 <td><strong>quick</strong></td>
-<td>Small fixes</td>
-<td><strong>Small-parameter fast models</strong></td>
+<td>小修小补</td>
+<td><strong>小参数快速模型</strong></td>
 </tr>
 <tr>
 <td><strong>unspecified-low</strong></td>
-<td>Simple tasks</td>
-<td><strong>Small-parameter fast models</strong></td>
+<td>简单任务</td>
+<td><strong>小参数快速模型</strong></td>
 </tr>
 <tr>
 <td><strong>unspecified-high</strong></td>
-<td>Complex unspecified tasks</td>
-<td><strong>High-reasoning-capability models</strong></td>
+<td>复杂未分类任务</td>
+<td><strong>高推理能力模型</strong></td>
 </tr>
 <tr>
 <td><strong>writing</strong></td>
-<td>Documentation, comments</td>
-<td><strong>General-purpose models</strong></td>
+<td>文档、注释</td>
+<td><strong>通用模型</strong></td>
 </tr>
 </tbody></table>
-<h3 id="6-8-Slash-Commands-Skills"><a href="#6-8-Slash-Commands-Skills" class="headerlink" title="6.8 Slash Commands &amp; Skills"></a>6.8 Slash Commands &amp; Skills</h3><p>Oh My OpenCode adds its own slash commands on top of OpenCode’s built-ins:</p>
+<h3 id="6-8-斜杠命令与-Skills"><a href="#6-8-斜杠命令与-Skills" class="headerlink" title="6.8 斜杠命令与 Skills"></a>6.8 斜杠命令与 Skills</h3><p>Oh My OpenCode 在 OpenCode 内置命令基础上又加了一批：</p>
 <table>
 <thead>
 <tr>
-<th>Command</th>
-<th>Description</th>
+<th>命令</th>
+<th>说明</th>
 </tr>
 </thead>
 <tbody><tr>
 <td><code>/init-deep</code></td>
-<td>Generate hierarchical <code>AGENTS.md</code> throughout the project tree</td>
+<td>在项目树中生成分层的 <code>AGENTS.md</code></td>
 </tr>
 <tr>
 <td><code>/start-work</code></td>
-<td>Execute a Prometheus-generated plan via Atlas</td>
+<td>通过 Atlas 执行 Prometheus 生成的计划</td>
 </tr>
 <tr>
 <td><code>/ralph-loop</code></td>
-<td>Self-referential loop — agent keeps working until task is done</td>
+<td>自引用循环——Agent 持续干活直到任务完成</td>
 </tr>
 <tr>
 <td><code>/ulw-loop</code></td>
-<td>Same as ralph-loop but with ultrawork mode active</td>
+<td>同上，但开启 ultrawork 模式</td>
 </tr>
 <tr>
 <td><code>/refactor</code></td>
-<td>LSP + AST-grep powered refactoring with TDD verification</td>
+<td>LSP + AST-grep 驱动的重构，TDD 验证</td>
 </tr>
 <tr>
 <td><code>/cancel-ralph</code></td>
-<td>Stop an active Ralph Loop</td>
+<td>停止活跃的 Ralph Loop</td>
 </tr>
 <tr>
 <td><code>/handoff</code></td>
-<td>Create context summary for continuing in a new session</td>
+<td>创建上下文摘要，方便在新会话中继续</td>
 </tr>
 <tr>
 <td><code>/stop-continuation</code></td>
-<td>Stop all continuation mechanisms</td>
+<td>停止所有续接机制</td>
 </tr>
 </tbody></table>
-<p><strong>Built-in Skills</strong> (load via <code>load_skills=[...]</code> in agent prompts):</p>
+<p><strong>内置 Skills</strong>（通过 agent prompt 里的 <code>load_skills=[...]</code> 加载）：</p>
 <table>
 <thead>
 <tr>
 <th>Skill</th>
-<th>Trigger</th>
-<th>Description</th>
+<th>触发场景</th>
+<th>说明</th>
 </tr>
 </thead>
 <tbody><tr>
 <td><code>playwright</code></td>
-<td>Browser tasks, screenshots</td>
-<td>Browser automation via Playwright MCP</td>
+<td>浏览器任务、截图</td>
+<td>通过 Playwright MCP 驱动浏览器自动化</td>
 </tr>
 <tr>
 <td><code>frontend-ui-ux</code></td>
-<td>UI&#x2F;UX, styling</td>
-<td>Designer persona — bold aesthetics, distinctive typography</td>
+<td>UI&#x2F;UX、样式</td>
+<td>设计师人格——大胆美学、个性化排版</td>
 </tr>
 <tr>
 <td><code>git-master</code></td>
-<td>commit, rebase, squash</td>
-<td>Atomic commits, history rewriting, blame&#x2F;bisect</td>
+<td>commit、rebase、squash</td>
+<td>原子提交、历史重写、blame&#x2F;bisect</td>
 </tr>
 <tr>
 <td><code>dev-browser</code></td>
-<td>Navigate, fill forms, scrape</td>
-<td>Persistent browser state automation</td>
+<td>导航、填表、抓取</td>
+<td>持久化浏览器状态自动化</td>
 </tr>
 </tbody></table>
 <!-- ---
-## 7. Summary
+## 7. 总结
 
-### 7.1 OpenCode Value
+### 7.1 OpenCode 的价值
 
-1. **Open Source**: No lock-in
-2. **Privacy First**: Local models
-3. **Multi-Model**: 75+ providers
-4. **Closed-Loop**: Auto-fix until success
+1. **开源**：没有锁定
+2. **隐私优先**：本地模型
+3. **多模型**：75+ 供应商
+4. **闭环**：自动修直到成功
 
-### 7.2 Oh My OpenCode Benefits
+### 7.2 Oh My OpenCode 的好处
 
-- Multi-agent collaboration
-- Hook automation
-- Specialized division: Sisyphus (orchestration), Hephaestus (deep analysis), Prometheus (planing), Atlas (execution) -->
+- 多 Agent 协作
+- Hook 自动化
+- 专业分工：Sisyphus（编排）、Hephaestus（深度分析）、Prometheus（规划）、Atlas（执行） -->
 
 
-<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://opencode.ai/">OpenCode Official</a></li>
-<li><a target="_blank" rel="noopener" href="https://opencode.ai/docs">OpenCode Docs</a></li>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://opencode.ai/">OpenCode 官方</a></li>
+<li><a target="_blank" rel="noopener" href="https://opencode.ai/docs">OpenCode 文档</a></li>
 <li><a target="_blank" rel="noopener" href="https://github.com/anomalyco/opencode">GitHub</a></li>
 <li><a target="_blank" rel="noopener" href="https://github.com/code-yeongyu/oh-my-opencode">Oh My OpenCode</a></li>
 </ul>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="/about/">FrozenYears</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://frozenyears.github.io/2026/02/22/OpenCode-Tutorial/">http://frozenyears.github.io/2026/02/22/OpenCode-Tutorial/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Tutorial/">Tutorial</a><a class="post-meta__tags" href="/tags/OpenCode/">OpenCode</a><a class="post-meta__tags" href="/tags/Ollama/">Ollama</a><a class="post-meta__tags" href="/tags/CLI/">CLI</a><a class="post-meta__tags" href="/tags/AI-Agent/">AI-Agent</a><a class="post-meta__tags" href="/tags/Oh-My-OpenCode/">Oh-My-OpenCode</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2026/03/01/Browser-Extension-Recommendations/" title="Browser Extension Recommendations"><img class="cover" src="/2026/03/01/Browser-Extension-Recommendations/cover.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous</div><div class="prev_info">Browser Extension Recommendations</div></div></a></div><div class="next-post pull-right"><a href="/2026/02/14/Why-Return-to-CLI-for-AI-Coding/" title="Why Return to CLI for Modern Development Tools"><img class="cover" src="/2026/02/14/Why-Return-to-CLI-for-AI-Coding/cover.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next</div><div class="next_info">Why Return to CLI for Modern Development Tools</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2026/03/09/Moonlight-Axixi-Sunshine-LAN-Streaming-Tutorial/" title="Moonlight-Axixi &amp; Sunshine LAN Streaming Tutorial"><img class="cover" src="/2026/03/09/Moonlight-Axixi-Sunshine-LAN-Streaming-Tutorial/cover.png" alt="cover"><div class="content is-center"><div class="date"><i class="fas fa-history fa-fw"></i> 2026-03-10</div><div class="title">Moonlight-Axixi &amp; Sunshine LAN Streaming Tutorial</div></div></a></div><div><a href="/2026/03/22/QQ-Bot-Construction-Tutorial-with-NapCatQQ-and-AstrBot/" title="QQ Bot Construction Tutorial with NapCatQQ and AstrBot"><img class="cover" src="/2026/03/22/QQ-Bot-Construction-Tutorial-with-NapCatQQ-and-AstrBot/cover.png" alt="cover"><div class="content is-center"><div class="date"><i class="fas fa-history fa-fw"></i> 2026-03-22</div><div class="title">QQ Bot Construction Tutorial with NapCatQQ and AstrBot</div></div></a></div><div><a href="/2025/07/18/Voicemeeter-RVC-Voice-Changer-Tutorial/" title="Voicemeeter &amp; RVC Voice Changer Tutorial"><img class="cover" src="/2025/07/18/Voicemeeter-RVC-Voice-Changer-Tutorial/cover.png" alt="cover"><div class="content is-center"><div class="date"><i class="fas fa-history fa-fw"></i> 2026-03-08</div><div class="title">Voicemeeter &amp; RVC Voice Changer Tutorial</div></div></a></div><div><a href="/2026/02/14/Why-Return-to-CLI-for-AI-Coding/" title="Why Return to CLI for Modern Development Tools"><img class="cover" src="/2026/02/14/Why-Return-to-CLI-for-AI-Coding/cover.png" alt="cover"><div class="content is-center"><div class="date"><i class="fas fa-history fa-fw"></i> 2026-03-08</div><div class="title">Why Return to CLI for Modern Development Tools</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">FrozenYears</div><div class="author-info__description">Hi, there!</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">9</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">32</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">4</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/FrozenYears" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:1939648535@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Overview"><span class="toc-text">1. Overview</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-What-is-OpenCode"><span class="toc-text">1.1 What is OpenCode?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-Core-Features"><span class="toc-text">1.2 Core Features</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Why-CLI-Command-Line-Interface-over-Web-Chat"><span class="toc-text">2. Why CLI ( Command Line Interface ) over Web Chat</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-Core-Differences"><span class="toc-text">2.1 Core Differences</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-Key-Changes"><span class="toc-text">2.2 Key Changes</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Installation"><span class="toc-text">3. Installation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-CLI-Quick-Install"><span class="toc-text">3.1 CLI Quick Install</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-Verify-Installation"><span class="toc-text">3.2 Verify Installation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-First-Launch"><span class="toc-text">3.3 First Launch</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Commands-Models"><span class="toc-text">4. Commands &amp; Models</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-Slash-Commands"><span class="toc-text">4.1 Slash Commands</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-Free-Models"><span class="toc-text">4.2 Free Models</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-Other-Commands-of-OpenCode"><span class="toc-text">4.3 Other Commands of OpenCode</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-Default-Agents"><span class="toc-text">4.4 Default Agents</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Configuration"><span class="toc-text">5. Configuration</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-Config-Location"><span class="toc-text">5.1 Config Location</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-Basic-Config"><span class="toc-text">5.2 Basic Config</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-Multi-Model-Config"><span class="toc-text">5.3 Multi-Model Config</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-Local-Ollama-Setup-Configure-A-Local-LLM"><span class="toc-text">*5.4 Local Ollama Setup (Configure A Local LLM)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Step-0-Configure-Environment-Variables"><span class="toc-text">Step 0: Configure Environment Variables</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step-1-Install-Ollama"><span class="toc-text">Step 1: Install Ollama</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step-2-Pull-Models"><span class="toc-text">Step 2: Pull Models</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step-3-Configure-OpenCode"><span class="toc-text">Step 3: Configure OpenCode</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-5-Third-Party-API-Proxy"><span class="toc-text">5.5 Third-Party API Proxy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-6-Recommended-API-Sources"><span class="toc-text">5.6 Recommended API Sources</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Oh-My-OpenCode-Plugin"><span class="toc-text">6. Oh My OpenCode Plugin</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-What-is-Oh-My-OpenCode"><span class="toc-text">6.1 What is Oh My OpenCode?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-Core-Agents"><span class="toc-text">6.2 Core Agents</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-ULW-Trigger"><span class="toc-text">6.3 ULW Trigger</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-4-Multi-Agent-vs-Single-Agent"><span class="toc-text">6.4 Multi-Agent vs Single-Agent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-5-Install-Oh-My-OpenCode"><span class="toc-text">6.5 Install Oh My OpenCode</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-6-Additional-Features"><span class="toc-text">6.6 Additional Features</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-7-Model-Configuration"><span class="toc-text">*6.7 Model Configuration</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-8-Slash-Commands-Skills"><span class="toc-text">6.8 Slash Commands &amp; Skills</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-text">References</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/03/22/QQ-Bot-Construction-Tutorial-with-NapCatQQ-and-AstrBot/" title="QQ Bot Construction Tutorial with NapCatQQ and AstrBot"><img src="/2026/03/22/QQ-Bot-Construction-Tutorial-with-NapCatQQ-and-AstrBot/cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="QQ Bot Construction Tutorial with NapCatQQ and AstrBot"/></a><div class="content"><a class="title" href="/2026/03/22/QQ-Bot-Construction-Tutorial-with-NapCatQQ-and-AstrBot/" title="QQ Bot Construction Tutorial with NapCatQQ and AstrBot">QQ Bot Construction Tutorial with NapCatQQ and AstrBot</a><time datetime="2026-03-21T16:00:00.000Z" title="Created 2026-03-22 00:00:00">2026-03-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/03/09/Moonlight-Axixi-Sunshine-LAN-Streaming-Tutorial/" title="Moonlight-Axixi &amp; Sunshine LAN Streaming Tutorial"><img src="/2026/03/09/Moonlight-Axixi-Sunshine-LAN-Streaming-Tutorial/cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Moonlight-Axixi &amp; Sunshine LAN Streaming Tutorial"/></a><div class="content"><a class="title" href="/2026/03/09/Moonlight-Axixi-Sunshine-LAN-Streaming-Tutorial/" title="Moonlight-Axixi &amp; Sunshine LAN Streaming Tutorial">Moonlight-Axixi &amp; Sunshine LAN Streaming Tutorial</a><time datetime="2026-03-08T16:00:00.000Z" title="Created 2026-03-09 00:00:00">2026-03-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/03/07/Phishing-Analysis-And-Counterstrike/" title="Phishing Full-Chain Analysis &amp; Counter-Strike"><img src="/2026/03/07/Phishing-Analysis-And-Counterstrike/cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Phishing Full-Chain Analysis &amp; Counter-Strike"/></a><div class="content"><a class="title" href="/2026/03/07/Phishing-Analysis-And-Counterstrike/" title="Phishing Full-Chain Analysis &amp; Counter-Strike">Phishing Full-Chain Analysis &amp; Counter-Strike</a><time datetime="2026-03-06T16:00:00.000Z" title="Created 2026-03-07 00:00:00">2026-03-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/03/01/Browser-Extension-Recommendations/" title="Browser Extension Recommendations"><img src="/2026/03/01/Browser-Extension-Recommendations/cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Browser Extension Recommendations"/></a><div class="content"><a class="title" href="/2026/03/01/Browser-Extension-Recommendations/" title="Browser Extension Recommendations">Browser Extension Recommendations</a><time datetime="2026-02-28T16:00:00.000Z" title="Created 2026-03-01 00:00:00">2026-03-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/02/22/OpenCode-Tutorial/" title="OpenCode Tutorial"><img src="/2026/02/22/OpenCode-Tutorial/cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="OpenCode Tutorial"/></a><div class="content"><a class="title" href="/2026/02/22/OpenCode-Tutorial/" title="OpenCode Tutorial">OpenCode Tutorial</a><time datetime="2026-02-21T16:00:00.000Z" title="Created 2026-02-22 00:00:00">2026-02-22</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2026 By FrozenYears</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.12.0"></script><script src="/js/main.js?v=4.12.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="/about/">FrozenYears</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://frozenyears.github.io/2026/02/22/OpenCode-Tutorial/">http://frozenyears.github.io/2026/02/22/OpenCode-Tutorial/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Tutorial/">Tutorial</a><a class="post-meta__tags" href="/tags/OpenCode/">OpenCode</a><a class="post-meta__tags" href="/tags/Ollama/">Ollama</a><a class="post-meta__tags" href="/tags/CLI/">CLI</a><a class="post-meta__tags" href="/tags/AI-Agent/">AI-Agent</a><a class="post-meta__tags" href="/tags/Oh-My-OpenCode/">Oh-My-OpenCode</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2026/03/01/Browser-Extension-Recommendations/" title="浏览器扩展推荐"><img class="cover" src="/2026/03/01/Browser-Extension-Recommendations/cover.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous</div><div class="prev_info">浏览器扩展推荐</div></div></a></div><div class="next-post pull-right"><a href="/2025/07/18/Markdown-Syntax-in-Obsidian/" title="Obsidian 里的 Markdown 语法速查"><img class="cover" src="/2025/07/18/Markdown-Syntax-in-Obsidian/cover.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next</div><div class="next_info">Obsidian 里的 Markdown 语法速查</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2026/03/09/Moonlight-Axixi-Sunshine-LAN-Streaming-Tutorial/" title="Moonlight-Axixi &amp; Sunshine 局域网串流教程"><img class="cover" src="/2026/03/09/Moonlight-Axixi-Sunshine-LAN-Streaming-Tutorial/cover.png" alt="cover"><div class="content is-center"><div class="date"><i class="fas fa-history fa-fw"></i> 2026-09-04</div><div class="title">Moonlight-Axixi &amp; Sunshine 局域网串流教程</div></div></a></div><div><a href="/2026/03/22/QQ-Bot-Construction-Tutorial-with-NapCatQQ-and-AstrBot/" title="用 NapCatQQ + AstrBot 搭一个 QQ 聊天机器人"><img class="cover" src="/2026/03/22/QQ-Bot-Construction-Tutorial-with-NapCatQQ-and-AstrBot/cover.png" alt="cover"><div class="content is-center"><div class="date"><i class="fas fa-history fa-fw"></i> 2026-09-04</div><div class="title">用 NapCatQQ + AstrBot 搭一个 QQ 聊天机器人</div></div></a></div><div><a href="/2025/07/18/Voicemeeter-RVC-Voice-Changer-Tutorial/" title="Voicemeeter &amp; RVC 实时变声器折腾指南"><img class="cover" src="/2025/07/18/Voicemeeter-RVC-Voice-Changer-Tutorial/cover.png" alt="cover"><div class="content is-center"><div class="date"><i class="fas fa-history fa-fw"></i> 2026-09-04</div><div class="title">Voicemeeter &amp; RVC 实时变声器折腾指南</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">FrozenYears</div><div class="author-info__description">Hi, there!</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">3</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/FrozenYears" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:1939648535@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%A6%82%E8%A7%88"><span class="toc-text">1. 概览</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-OpenCode-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">1.1 OpenCode 是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E6%A0%B8%E5%BF%83%E7%89%B9%E6%80%A7"><span class="toc-text">1.2 核心特性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89-CLI-%E8%80%8C%E4%B8%8D%E6%98%AF%E7%BD%91%E9%A1%B5%E8%81%8A%E5%A4%A9"><span class="toc-text">2. 为什么选 CLI 而不是网页聊天</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E6%A0%B8%E5%BF%83%E5%8C%BA%E5%88%AB"><span class="toc-text">2.1 核心区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E5%85%B3%E9%94%AE%E5%8F%98%E5%8C%96"><span class="toc-text">2.2 关键变化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%AE%89%E8%A3%85"><span class="toc-text">3. 安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-CLI-%E5%BF%AB%E9%80%9F%E5%AE%89%E8%A3%85"><span class="toc-text">3.1 CLI 快速安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E9%AA%8C%E8%AF%81%E5%AE%89%E8%A3%85"><span class="toc-text">3.2 验证安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E9%A6%96%E6%AC%A1%E5%90%AF%E5%8A%A8"><span class="toc-text">3.3 首次启动</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%91%BD%E4%BB%A4%E4%B8%8E%E6%A8%A1%E5%9E%8B"><span class="toc-text">4. 命令与模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E6%96%9C%E6%9D%A0%E5%91%BD%E4%BB%A4"><span class="toc-text">4.1 斜杠命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E5%85%8D%E8%B4%B9%E6%A8%A1%E5%9E%8B"><span class="toc-text">4.2 免费模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-OpenCode-%E5%85%B6%E4%BB%96%E5%91%BD%E4%BB%A4"><span class="toc-text">4.3 OpenCode 其他命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-%E9%BB%98%E8%AE%A4-Agent"><span class="toc-text">4.4 默认 Agent</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E9%85%8D%E7%BD%AE"><span class="toc-text">5. 配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%BD%8D%E7%BD%AE"><span class="toc-text">5.1 配置文件位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE"><span class="toc-text">5.2 基础配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-%E5%A4%9A%E6%A8%A1%E5%9E%8B%E9%85%8D%E7%BD%AE"><span class="toc-text">5.3 多模型配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-%E6%9C%AC%E5%9C%B0-Ollama-%E9%85%8D%E7%BD%AE%EF%BC%88%E6%8E%A5%E5%85%A5%E6%9C%AC%E5%9C%B0%E5%A4%A7%E6%A8%A1%E5%9E%8B%EF%BC%89"><span class="toc-text">*5.4 本地 Ollama 配置（接入本地大模型）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Step-0-%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-text">Step 0: 配置环境变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step-1-%E5%AE%89%E8%A3%85-Ollama"><span class="toc-text">Step 1: 安装 Ollama</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step-2-%E6%8B%89%E5%8F%96%E6%A8%A1%E5%9E%8B"><span class="toc-text">Step 2: 拉取模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step-3-%E9%85%8D%E7%BD%AE-OpenCode"><span class="toc-text">Step 3: 配置 OpenCode</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-5-%E7%AC%AC%E4%B8%89%E6%96%B9-API-%E4%BB%A3%E7%90%86"><span class="toc-text">5.5 第三方 API 代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-6-%E6%8E%A8%E8%8D%90-API-%E6%9D%A5%E6%BA%90"><span class="toc-text">5.6 推荐 API 来源</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Oh-My-OpenCode-%E6%8F%92%E4%BB%B6"><span class="toc-text">6. Oh My OpenCode 插件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-Oh-My-OpenCode-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">6.1 Oh My OpenCode 是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-%E6%A0%B8%E5%BF%83-Agent"><span class="toc-text">6.2 核心 Agent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-ULW-%E8%A7%A6%E5%8F%91"><span class="toc-text">6.3 ULW 触发</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-4-%E5%A4%9A-Agent-vs-%E5%8D%95-Agent"><span class="toc-text">6.4 多 Agent vs 单 Agent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-5-%E5%AE%89%E8%A3%85-Oh-My-OpenCode"><span class="toc-text">6.5 安装 Oh My OpenCode</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-6-%E9%99%84%E5%8A%A0%E5%8A%9F%E8%83%BD"><span class="toc-text">6.6 附加功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-7-%E6%A8%A1%E5%9E%8B%E9%85%8D%E7%BD%AE"><span class="toc-text">*6.7 模型配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-8-%E6%96%9C%E6%9D%A0%E5%91%BD%E4%BB%A4%E4%B8%8E-Skills"><span class="toc-text">6.8 斜杠命令与 Skills</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-text">参考资料</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/03/22/QQ-Bot-Construction-Tutorial-with-NapCatQQ-and-AstrBot/" title="用 NapCatQQ + AstrBot 搭一个 QQ 聊天机器人"><img src="/2026/03/22/QQ-Bot-Construction-Tutorial-with-NapCatQQ-and-AstrBot/cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="用 NapCatQQ + AstrBot 搭一个 QQ 聊天机器人"/></a><div class="content"><a class="title" href="/2026/03/22/QQ-Bot-Construction-Tutorial-with-NapCatQQ-and-AstrBot/" title="用 NapCatQQ + AstrBot 搭一个 QQ 聊天机器人">用 NapCatQQ + AstrBot 搭一个 QQ 聊天机器人</a><time datetime="2026-03-21T16:00:00.000Z" title="Created 2026-03-22 00:00:00">2026-03-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/03/09/Moonlight-Axixi-Sunshine-LAN-Streaming-Tutorial/" title="Moonlight-Axixi &amp; Sunshine 局域网串流教程"><img src="/2026/03/09/Moonlight-Axixi-Sunshine-LAN-Streaming-Tutorial/cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Moonlight-Axixi &amp; Sunshine 局域网串流教程"/></a><div class="content"><a class="title" href="/2026/03/09/Moonlight-Axixi-Sunshine-LAN-Streaming-Tutorial/" title="Moonlight-Axixi &amp; Sunshine 局域网串流教程">Moonlight-Axixi &amp; Sunshine 局域网串流教程</a><time datetime="2026-03-08T16:00:00.000Z" title="Created 2026-03-09 00:00:00">2026-03-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/03/07/Phishing-Analysis-And-Counterstrike/" title="钓鱼攻击全链路分析与反制"><img src="/2026/03/07/Phishing-Analysis-And-Counterstrike/cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="钓鱼攻击全链路分析与反制"/></a><div class="content"><a class="title" href="/2026/03/07/Phishing-Analysis-And-Counterstrike/" title="钓鱼攻击全链路分析与反制">钓鱼攻击全链路分析与反制</a><time datetime="2026-03-06T16:00:00.000Z" title="Created 2026-03-07 00:00:00">2026-03-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/03/01/Browser-Extension-Recommendations/" title="浏览器扩展推荐"><img src="/2026/03/01/Browser-Extension-Recommendations/cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="浏览器扩展推荐"/></a><div class="content"><a class="title" href="/2026/03/01/Browser-Extension-Recommendations/" title="浏览器扩展推荐">浏览器扩展推荐</a><time datetime="2026-02-28T16:00:00.000Z" title="Created 2026-03-01 00:00:00">2026-03-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/02/22/OpenCode-Tutorial/" title="OpenCode 使用教程"><img src="/2026/02/22/OpenCode-Tutorial/cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="OpenCode 使用教程"/></a><div class="content"><a class="title" href="/2026/02/22/OpenCode-Tutorial/" title="OpenCode 使用教程">OpenCode 使用教程</a><time datetime="2026-02-21T16:00:00.000Z" title="Created 2026-02-22 00:00:00">2026-02-22</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2026 By FrozenYears</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.12.0"></script><script src="/js/main.js?v=4.12.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
