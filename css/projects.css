@@ -1,0 +1,159 @@
+/* 作品页样式限定在展板内，不改变博客的文章和导航。 */
+.projects-showcase {
+  --project-accent: #247c94;
+  --project-muted: #69777e;
+  --project-line: #dce5e8;
+  --project-surface: #f3f7f8;
+  color: var(--font-color);
+}
+[data-theme='dark'] .projects-showcase {
+  --project-accent: #82cbdc;
+  --project-muted: #a0adb5;
+  --project-line: #374249;
+  --project-surface: #202a30;
+}
+/* 展板标题不使用文章标题的装饰图标，也不保留其悬停缩进。 */
+#article-container .projects-showcase h2,
+#article-container .projects-showcase h3,
+#article-container .projects-showcase h2:hover,
+#article-container .projects-showcase h3:hover {
+  padding-left: 0;
+}
+#article-container .projects-showcase h2::before,
+#article-container .projects-showcase h3::before {
+  content: none;
+}
+#article-container .projects-intro {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--project-line);
+}
+#article-container .projects-eyebrow {
+  margin: 0 0 8px;
+  color: var(--project-accent);
+  font: 12px/1.5 Consolas, monospace;
+  letter-spacing: .16em;
+}
+#article-container .projects-intro h2 {
+  margin: 0 0 12px;
+  font-size: clamp(24px, 4vw, 36px);
+  line-height: 1.4;
+}
+#article-container .projects-intro p:last-child {
+  margin: 0;
+  color: var(--project-muted);
+}
+#article-container .projects-profile {
+  flex-shrink: 0;
+  color: var(--project-accent);
+  font-weight: 600;
+}
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px 28px;
+}
+.project-card {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+#article-container .project-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border: 1px solid var(--project-line);
+  border-radius: 8px;
+  background: var(--project-surface);
+  transition: border-color .2s;
+}
+#article-container .project-preview:hover {
+  border-color: var(--project-accent);
+}
+#article-container .project-preview img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  object-fit: contain;
+  transition: transform .2s;
+}
+#article-container .project-preview:hover img {
+  transform: scale(1.02);
+}
+#article-container .project-preview--pet img {
+  width: auto;
+  max-width: 90%;
+  height: 90%;
+}
+#article-container .project-preview--quote img {
+  width: 90%;
+  height: auto;
+}
+#article-container .project-kind {
+  margin: 18px 0 6px;
+  color: var(--project-muted);
+  font: 11px/1.6 Consolas, monospace;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+#article-container .project-card h3 {
+  margin: 0 0 8px;
+  padding: 0;
+  font-size: 21px;
+  line-height: 1.5;
+}
+#article-container .project-description {
+  margin: 0 0 16px;
+  line-height: 1.8;
+}
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid var(--project-line);
+}
+#article-container .project-links a {
+  color: var(--project-accent);
+  font-size: 14px;
+  font-weight: 600;
+}
+#article-container .projects-note {
+  margin: 36px 0 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--project-line);
+  color: var(--project-muted);
+  font-size: 13px;
+}
+.projects-showcase a:focus-visible {
+  outline: 2px solid var(--project-accent);
+  outline-offset: 5px;
+}
+@media (max-width: 680px) {
+  #article-container .projects-intro {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #article-container .project-preview,
+  #article-container .project-preview img {
+    transition: none;
+  }
+  #article-container .project-preview:hover img {
+    transform: none;
+  }
+}
